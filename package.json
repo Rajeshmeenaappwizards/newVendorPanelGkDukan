@@ -1,0 +1,83 @@
+{
+  "name": "Multiple-velzon-thunk",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.2.3",
+    "@south-paw/react-vector-maps": "^3.2.0",
+    "@tanstack/match-sorter-utils": "^8.15.1",
+    "@tanstack/react-table": "^8.16.0",
+    "@testing-library/jest-dom": "^6.4.2",
+    "@testing-library/react": "^15.0.2",
+    "apexcharts": "^3.45.0",
+    "axios": "^1.6.2",
+    "bootstrap": "5.3.2",
+    "echarts": "^5.5.0",
+    "eslint": "^9.0.0",
+    "feather-icons-react": "^0.7.0",
+    "filepond": "^4.31.1",
+    "filepond-plugin-image-exif-orientation": "^1.0.11",
+    "filepond-plugin-image-preview": "^4.6.12",
+    "formik": "^2.4.5",
+    "i18next": "^23.11.2",
+    "i18next-browser-languagedetector": "^7.2.1",
+    "moment": "^2.30.1",
+    "nouislider-react": "^3.4.2",
+    "prismjs": "^1.29.0",
+    "react": "^18.2.0",
+    "react-apexcharts": "^1.4.1",
+    "react-color": "^2.19.3",
+    "react-countdown": "^2.3.5",
+    "react-countup": "^6.5.3",
+    "node-sass": "^9.0.0",
+    "react-csv": "^2.2.2",
+    "react-dom": "^18.2.0",
+    "react-dropzone": "^14.2.3",
+    "react-filepond": "^7.1.2",
+    "react-flatpickr": "^3.10.13",
+    "react-i18next": "^14.1.0",
+    "react-rating": "^2.0.5",
+    "react-redux": "^9.1.1",
+    "react-responsive-carousel": "^3.2.23",
+    "react-router-dom": "^6.22.3",
+    "react-scripts": "^5.0.1",
+    "react-select": "^5.8.0",
+    "react-toastify": "^10.0.5",
+    "reactstrap": "^9.2.2",
+    "redux": "^5.0.1",
+    "reselect": "^5.1.0",
+    "save": "^2.9.0",
+    "simplebar-react": "^3.2.4",
+    "swiper": "^11.1.1",
+    "web-vitals": "^3.5.2",
+    "yup": "^1.4.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "resolutions": {
+    "moment": "2.29.1",
+    "autoprefixer": "10.4.5"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.17.0",
+    "@types/react-bootstrap-table2-paginator": "^2.1.6",
+    "@types/react-bootstrap-table2-toolkit": "^2.1.13",
+    "babel-eslint": "^10.1.0"
+  }
+}
