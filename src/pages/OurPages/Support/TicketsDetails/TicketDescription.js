@@ -84,7 +84,6 @@ const TicketDescription = (props) => {
                 })
               : ""}
           </CardBody>
-          ;
           <CardBody className="p-4">
             <h5 className="card-title mb-4">Messages</h5>
 
@@ -94,7 +93,7 @@ const TicketDescription = (props) => {
                   return (
                     <div
                       className={`d-flex mb-4 bg-light p-3 ${
-                        message?.sender === "admin" ? "flex-row-reverse" : ""
+                        message?.sender === "vendor" ? "flex-row-reverse" : ""
                       }`}
                     >
                       <div className="flex-shrink-0">
@@ -106,7 +105,7 @@ const TicketDescription = (props) => {
                       </div>
                       <div
                         className={`flex-grow-1 mx-3 ${
-                          message?.sender === "admin" ? "text-end" : ""
+                          message?.sender === "vendor" ? "text-end" : ""
                         }`}
                       >
                         <h5 className="fs-13">

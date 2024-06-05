@@ -47,11 +47,11 @@ const AddCatalogModal = ({
     name: "",
     full_details: "",
     media_id: "",
-    vendor_id: "",
+    // vendor_id: "",
   });
-  const [vendorOption, setVendorOption] = useState([]);
+  // const [vendorOption, setVendorOption] = useState([]);
 
-  const VendorOptionRes = useSelector((state) => state.Option.options);
+  // const VendorOptionRes = useSelector((state) => state.Option.options);
   const categoriesRes = useSelector(
     (state) => state.CategorySlice.categoriesAll
   );
@@ -62,38 +62,38 @@ const AddCatalogModal = ({
     }
   }, [categoriesRes]);
 
-  useEffect(() => {
-    if (VendorOptionRes && VendorOptionRes.success) {
-      setVendorOption(VendorOptionRes.data);
-    }
-  }, [VendorOptionRes]);
+  // useEffect(() => {
+  //   if (VendorOptionRes && VendorOptionRes.success) {
+  //     setVendorOption(VendorOptionRes.data);
+  //   }
+  // }, [VendorOptionRes]);
 
   useEffect(() => {
     let params = {
       limit: 10,
     };
-    fetchVendorOptions(params);
+    // fetchVendorOptions(params);
     fetchCategoriesOption();
   }, []);
 
-  const fetchVendorOptions = (data) => {
-    dispatch(getOptionsData(data));
-  };
+  // const fetchVendorOptions = (data) => {
+  //   dispatch(getOptionsData(data));
+  // };
   const fetchCategoriesOption = () => {
     dispatch(getGetCategoriesData());
   };
 
-  const handleOptionChange = (inputValue) => {
-    let params = {
-      limit: 10,
-    };
-    if (inputValue) {
-      params.keyword = inputValue;
-      fetchVendorOptions(params);
-    } else {
-      fetchVendorOptions(params);
-    }
-  };
+  // const handleOptionChange = (inputValue) => {
+  //   let params = {
+  //     limit: 10,
+  //   };
+  //   if (inputValue) {
+  //     params.keyword = inputValue;
+  //     fetchVendorOptions(params);
+  //   } else {
+  //     fetchVendorOptions(params);
+  //   }
+  // };
 
   const handleInputChange = ({ target: { id, value } }) => {
     setCatalogData((prevState) => ({
@@ -132,7 +132,7 @@ const AddCatalogModal = ({
     const formData = new FormData();
     formData.append("upload", file, file.name);
 
-    fetch(`${BASE_URL}/admin/media/single`, {
+    fetch(`${BASE_URL}/vendor/media/single`, {
       method: "POST",
       body: formData,
       headers: {
@@ -322,19 +322,19 @@ const AddCatalogModal = ({
               </div>
             </FormGroup>
           </Col>
-          <Col lg={12}>
+          {/* <Col lg={12}>
             <FormGroup>
               <Label for="productImages">Select Vendor</Label>
               <DynamicSelectComponent
                 handleOptionChange={handleOptionChange}
                 handleVendorSelect={handleVendorSelected}
                 placeholder="Select Vendor"
-                options={vendorOption}
+                // options={vendorOption}
                 name="choices-single-default"
                 id="VendorSelectAddCatalog"
               />
             </FormGroup>
-          </Col>
+          </Col> */}
         </Row>
       </ModalBody>
       <div className="modal-footer">

@@ -227,19 +227,19 @@ const Navdata = () => {
       updateIconSidebar(e);
     },
   },
-  {
-    id: "vendors",
-    label: "Vendors",
-    icon: "ri-store-2-line",
-    link: "/vendors",
-    stateVariables: isVendors,
-    click: function (e) {
-      e.preventDefault();
-      setIsVendors(!isVendors);
-      setIscurrentState("vendors");
-      updateIconSidebar(e);
-    },
-  },
+  // {
+  //   id: "vendors",
+  //   label: "Vendors",
+  //   icon: "ri-store-2-line",
+  //   link: "/vendors",
+  //   stateVariables: isVendors,
+  //   click: function (e) {
+  //     e.preventDefault();
+  //     setIsVendors(!isVendors);
+  //     setIscurrentState("vendors");
+  //     updateIconSidebar(e);
+  //   },
+  // },
   {
     id: "vendorPayments",
     label: "Vendor Payments",
@@ -266,19 +266,19 @@ const Navdata = () => {
       updateIconSidebar(e);
     },
   },
-  {
-    id: "customer",
-    label: "Customer",
-    icon: "ri-user-3-line",
-    link: "/customer",
-    stateVariables: isCustomer,
-    click: function (e) {
-      e.preventDefault();
-      setIsCustomer(!isCustomer);
-      setIscurrentState("customer");
-      updateIconSidebar(e);
-    },
-  },
+  // {
+  //   id: "customer",
+  //   label: "Customer",
+  //   icon: "ri-user-3-line",
+  //   link: "/customer",
+  //   stateVariables: isCustomer,
+  //   click: function (e) {
+  //     e.preventDefault();
+  //     setIsCustomer(!isCustomer);
+  //     setIscurrentState("customer");
+  //     updateIconSidebar(e);
+  //   },
+  // },
   {
     id: "catalogs",
     label: "Catalogs",
@@ -331,71 +331,71 @@ const Navdata = () => {
       updateIconSidebar(e);
     },
   },
-  {
-    id: "categories",
-    label: "All Categories",
-    icon: "ri-folders-line",
-    link: "/categories",
-    stateVariables: isCategories,
-    click: function (e) {
-      e.preventDefault();
-      setIsCategories(!isCategories);
-      setIscurrentState("categories");
-      updateIconSidebar(e);
-    },
-  },
-  {
-    id: "attributes",
-    label: "All Attributes",
-    icon: "ri-price-tag-line",
-    link: "/attributes",
-    stateVariables: isAttributes,
-    click: function (e) {
-      e.preventDefault();
-      setIsAttributes(!isAttributes);
-      setIscurrentState("attributes");
-      updateIconSidebar(e);
-    },
-  },
-  {
-    id: "taxSlab",
-    label: "Tax Slab",
-    icon: "ri-percent-line",
-    link: "/taxSlab",
-    stateVariables: isTaxSlab,
-    click: function (e) {
-      e.preventDefault();
-      setIsTaxSlab(!isTaxSlab);
-      setIscurrentState("taxSlab");
-      updateIconSidebar(e);
-    },
-  },
-  {
-    id: "home",
-    label: "Web Home",
-    icon: "ri-home-line",
-    link: "/home",
-    stateVariables: isHome,
-    click: function (e) {
-      e.preventDefault();
-      setIsHome(!isHome);
-      setIscurrentState("Home");
-      updateIconSidebar(e);
-    },
-  },
-  {
-    id: "mobileHome",
-    label: "Mobile Home",
-    icon: "ri-smartphone-line",
-    link: "/mobileHome",
-    stateVariables: isMobileHome,
-    click: function (e) {
-      e.preventDefault();
-      setIsMobileHome(!isMobileHome);
-      setIscurrentState("mobileHome");
-      updateIconSidebar(e);
-    },
-  },
+  // {
+  //   id: "categories",
+  //   label: "All Categories",
+  //   icon: "ri-folders-line",
+  //   link: "/categories",
+  //   stateVariables: isCategories,
+  //   click: function (e) {
+  //     e.preventDefault();
+  //     setIsCategories(!isCategories);
+  //     setIscurrentState("categories");
+  //     updateIconSidebar(e);
+  //   },
+  // },
+  // {
+  //   id: "attributes",
+  //   label: "All Attributes",
+  //   icon: "ri-price-tag-line",
+  //   link: "/attributes",
+  //   stateVariables: isAttributes,
+  //   click: function (e) {
+  //     e.preventDefault();
+  //     setIsAttributes(!isAttributes);
+  //     setIscurrentState("attributes");
+  //     updateIconSidebar(e);
+  //   },
+  // },
+  // {
+  //   id: "taxSlab",
+  //   label: "Tax Slab",
+  //   icon: "ri-percent-line",
+  //   link: "/taxSlab",
+  //   stateVariables: isTaxSlab,
+  //   click: function (e) {
+  //     e.preventDefault();
+  //     setIsTaxSlab(!isTaxSlab);
+  //     setIscurrentState("taxSlab");
+  //     updateIconSidebar(e);
+  //   },
+  // },
+  // {
+  //   id: "home",
+  //   label: "Web Home",
+  //   icon: "ri-home-line",
+  //   link: "/home",
+  //   stateVariables: isHome,
+  //   click: function (e) {
+  //     e.preventDefault();
+  //     setIsHome(!isHome);
+  //     setIscurrentState("Home");
+  //     updateIconSidebar(e);
+  //   },
+  // },
+  // {
+  //   id: "mobileHome",
+  //   label: "Mobile Home",
+  //   icon: "ri-smartphone-line",
+  //   link: "/mobileHome",
+  //   stateVariables: isMobileHome,
+  //   click: function (e) {
+  //     e.preventDefault();
+  //     setIsMobileHome(!isMobileHome);
+  //     setIscurrentState("mobileHome");
+  //     updateIconSidebar(e);
+  //   },
+  // },
   {
     id: "notice",
     label: "Notice",

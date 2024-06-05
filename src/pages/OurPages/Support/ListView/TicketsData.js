@@ -90,7 +90,7 @@ const TicketsData = () => {
     const params = {
       page: pageRes,
       limit: 10,
-      vendorId: vendorIdRes,
+      // vendorId: vendorIdRes,
       status: statusRes,
       startDate: startDateRes,
       endDate: endDateRes,
@@ -149,12 +149,12 @@ const TicketsData = () => {
 
     initialValues: {
       title: (ticket && ticket.title) || "",
-      vendor_id: (ticket && ticket.vendor_id) || "",
+      // vendor_id: (ticket && ticket.vendor_id) || "",
       description: (ticket && ticket.description) || "",
     },
     validationSchema: Yup.object({
       title: Yup.string().required("Please Enter Title"),
-      vendor_id: Yup.string().required("Please Enter Vendor ID"),
+      // vendor_id: Yup.string().required("Please Enter Vendor ID"),
       description: Yup.string().required("Please Enter description"),
     }),
     onSubmit: async (values) => {
@@ -175,7 +175,7 @@ const TicketsData = () => {
       }
       const newTicket = {
         title: values["title"],
-        vendor_id: values["vendor_id"],
+        // vendor_id: values["vendor_id"],
         description: values["description"],
         media_ids: mediaId,
         order_id: tempOrderId ? tempOrderId : false,
@@ -415,7 +415,7 @@ const TicketsData = () => {
         <Form className="tablelist-form">
           <ModalBody>
             <Row className="g-3">
-              <Col lg={12}>
+              {/* <Col lg={12}>
                 <div id="modal-id">
                   <Label htmlFor="vendor_id" className="form-label">
                     Vendor ID
@@ -446,7 +446,7 @@ const TicketsData = () => {
                     </FormFeedback>
                   ) : null}
                 </div>
-              </Col>
+              </Col> */}
               <Col lg={12}>
                 <div>
                   <Label htmlFor="tasksTitle-field" className="form-label">

@@ -42,9 +42,9 @@ function Notification() {
         <Card>
           <CardHeader className="border-0 align-items-center d-flex">
             <h4 className="card-title mb-0 flex-grow-1">Notification</h4>
-            <Button color="primary" onClick={tog_grid}>
+            {/* <Button color="primary" onClick={tog_grid}>
               Add Notification
-            </Button>
+            </Button> */}
           </CardHeader>
         </Card>
         <NotificationAccordian />

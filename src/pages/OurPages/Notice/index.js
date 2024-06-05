@@ -16,17 +16,17 @@ function Notice() {
 
   const dispatch = useDispatch();
 
-  const deletedRes = useSelector(
-    (state) => state.Notice.deleteNoticeState
-  );
+  // const deletedRes = useSelector(
+  //   (state) => state.Notice.deleteNoticeState
+  // );
 
-  useEffect(() => {
-    if (deletedRes.message) {
-      dispatch(getAllNotices());
-      bottomrightnotify(deletedRes.message);
-      dispatch(clearDeleteNoticeState())
-    }
-  }, [deletedRes]);
+  // useEffect(() => {
+  //   if (deletedRes.message) {
+  //     dispatch(getAllNotices());
+  //     bottomrightnotify(deletedRes.message);
+  //     dispatch(clearDeleteNoticeState())
+  //   }
+  // }, [deletedRes]);
 
   const bottomrightnotify = (message) =>
     toast(message, {
@@ -43,9 +43,9 @@ function Notice() {
         <Card>
           <CardHeader className="border-0 align-items-center d-flex">
             <h4 className="card-title mb-0 flex-grow-1">Notice</h4>
-            <Button color="primary" onClick={tog_grid}>
+            {/* <Button color="primary" onClick={tog_grid}>
               Add Notice
-            </Button>
+            </Button> */}
           </CardHeader>
         </Card>
         <NoticeAccordian />

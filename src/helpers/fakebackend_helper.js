@@ -25,7 +25,7 @@ export const postFakeLogin = (data) => api.create(url.POST_FAKE_LOGIN, data);
 
 //? LOGIN API
 export const postLogin = (data) =>
-  api.create(`${url.BASE_URL}/admin/auth/login`, data);
+  api.create(`${url.BASE_URL}/vendor/auth/login`, data);
 
 // postForgetPwd
 export const postFakeForgetPwd = (data) =>
@@ -76,7 +76,7 @@ export const deleteAttributeById = (data) =>
 
 //categories
 export const getCategoriesData = (data) =>
-  api.get(`${url.BASE_URL}/admin/categories`);
+  api.get(`${url.BASE_URL}/vendor/categories`);
 export const addCategoriesData = (data) =>
   api.create(`${url.BASE_URL}/admin/categories`, data);
 export const editGetCategoriesData = (data) =>
@@ -88,18 +88,18 @@ export const deleteCategoryById = (data) =>
 
 //Notification
 export const postNotification = (data) =>
-  api.create(`${url.BASE_URL}/admin/notification`, data);
+  api.create(`${url.BASE_URL}/vendor/notification`, data);
 export const getNotification = (data) =>
-  api.get(`${url.BASE_URL}/admin/notification`);
+  api.get(`${url.BASE_URL}/vendor/notification`);
 export const deleteNotificationById = (data) =>
-  api.delete(`${url.BASE_URL}/admin/notification/${data}`);
+  api.delete(`${url.BASE_URL}/vendor/notification/${data}`);
 
 //Notice
 export const postNotice = (data) =>
-  api.create(`${url.BASE_URL}/admin/notice`, data);
-export const getNotice = (data) => api.get(`${url.BASE_URL}/admin/notice`);
+  api.create(`${url.BASE_URL}/vendor/notice`, data);
+export const getNotice = (data) => api.get(`${url.BASE_URL}/vendor/notice`);
 export const deleteNoticeById = (data) =>
-  api.delete(`${url.BASE_URL}/admin/notice/${data}`);
+  api.delete(`${url.BASE_URL}/vendor/notice/${data}`);
 
 //vendor payments
 export const getVendorPaymentsData = (data) =>
@@ -127,7 +127,7 @@ export const getVendorRevenueChartApi = (data) =>
 
 //fileUploads
 export const addFiles = (data) =>
-  api.create(`${url.BASE_URL}/admin/media/single`, data);
+  api.create(`${url.BASE_URL}/vendor/media/single`, data);
 
 // Login Method
 export const postJwtLogin = (data) => api.create(url.POST_FAKE_JWT_LOGIN, data);
@@ -160,7 +160,7 @@ export const deleteEvent = (event) =>
   api.delete(url.DELETE_EVENT, { headers: { event } });
 
 //product
-export const getAllProductData = () => api.get(`${url.BASE_URL}/admin/product`);
+export const getAllProductData = () => api.get(`${url.BASE_URL}/vendor/product`);
 
 // Chat
 // get Contact
@@ -445,29 +445,29 @@ export const getCatalogListByStatus = (status) =>
   api.get(`${url.BASE_URL}${url.GET_CATALOG}/${status}`);
 
 export const editCatalogProductApi = (data) =>
-  api.put(`${url.BASE_URL}/admin/product`, data);
+  api.put(`${url.BASE_URL}/vendor/product`, data);
 
 export const editCatalogDataApi = (data) =>
-  api.put(`${url.BASE_URL}/admin/catalog`, data);
+  api.put(`${url.BASE_URL}/vendor/catalog`, data);
 
 export const AddCatalogProductDataApi = (data) =>
-  api.create(`${url.BASE_URL}/admin/product`, data);
+  api.create(`${url.BASE_URL}/vendor/product`, data);
 
 export const AddCatalogApi = (data) =>
-  api.create(`${url.BASE_URL}/admin/catalog`, data);
+  api.create(`${url.BASE_URL}/vendor/catalog`, data);
 
 export const getCatalogProductByIdApi = (id) =>
-  api.get(`${url.BASE_URL}/admin/product/editdata/${id}`);
+  api.get(`${url.BASE_URL}/vendor/product/editdata/${id}`);
 
 export const deleteCatalogProductByIdApi = (id) =>
-  api.delete(`${url.BASE_URL}/admin/product/${id}`);
+  api.delete(`${url.BASE_URL}/vendor/product/${id}`);
 
 export const getProductAttributeByIdApi = (status) =>
-  api.get(`${url.BASE_URL}/admin/attributes/category/${status}`);
+  api.get(`${url.BASE_URL}/vendor/attributes/category/${status}`);
 
 
 export const addImageCatalog = (data) =>
-  api.create(`${url.BASE_URL}/admin/media/single`, data);
+  api.create(`${url.BASE_URL}/vendor/media/single`, data);
 
 // Attribute
 export const getAttributeData = () =>
@@ -528,7 +528,7 @@ export const addMessageToSupportTicketData = (data) =>
 // =====Support Ticket
 
 export const getSupportStatsDataApi = (data) =>
-  api.get(`${url.BASE_URL}/admin/support-ticket/stats/totalstats`, data);
+  api.get(`${url.BASE_URL}/vendor/support-ticket/stats/totalstats`, data);
 
 //========= Products
 export const getAllProductsData = (data) =>
@@ -538,10 +538,10 @@ export const getAllProductsByStatus = (status) =>
   api.get(`${url.BASE_URL}${url.GET_ALL_PRODUCTS_BY_STATUS}/${status}`);
 
 export const getProductData = (data) =>
-  api.get(`${url.BASE_URL}/admin/product/details/${data}`);
+  api.get(`${url.BASE_URL}/vendor/product/details/${data}`);
 
 export const updateStatusProductData = (data) =>
-  api.put(`${url.BASE_URL}/admin/product/${data.status}`, data);
+  api.put(`${url.BASE_URL}/vendor/product/${data.status}`, data);
 //======== Products
 
 // Reviews

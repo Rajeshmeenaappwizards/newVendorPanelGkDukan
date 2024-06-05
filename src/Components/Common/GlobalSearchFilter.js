@@ -49,19 +49,11 @@ import {
 const ProductsGlobalFilter = () => {
   const dispatch = useDispatch();
 
-  const [vendorOption, setVendorOption] = useState([]);
   const [categories, setCategories] = useState([]);
 
-  const VendorOptionRes = useSelector((state) => state.Option.options);
   const categoriesRes = useSelector(
     (state) => state.CategorySlice.categoriesData
   );
-
-  useEffect(() => {
-    if (VendorOptionRes && VendorOptionRes.success) {
-      setVendorOption(VendorOptionRes.data);
-    }
-  }, [VendorOptionRes]);
 
   useEffect(() => {
     if (categoriesRes && categoriesRes.length > 0) {
@@ -77,7 +69,6 @@ const ProductsGlobalFilter = () => {
   }, []);
 
   const fetchVendorOptions = (data) => {
-    dispatch(getOptionsData(data));
     dispatch(getGetCategoriesData());
   };
 
@@ -120,14 +111,6 @@ const ProductsGlobalFilter = () => {
           </div> */}
         </div>
       </Col>
-
-      <DynamicSelectComponent
-        handleOptionChange={handleOptionChange}
-        placeholder="Select Vendor"
-        options={vendorOption}
-        name="choices-single-default"
-        id="idVendorProduct"
-      />
 
       <DynamicSelectComponent
         handleOptionChange={handleOptionChange}
@@ -249,62 +232,62 @@ const CustomersGlobalFilter = () => {
 const OrderGlobalFilter = () => {
   const dispatch = useDispatch();
 
-  const [vendorOption, setVendorOption] = useState([]);
-  const [customer, setCustomer] = useState([]);
+  // const [vendorOption, setVendorOption] = useState([]);
+  // const [customer, setCustomer] = useState([]);
 
-  const VendorOptionRes = useSelector((state) => state.Option.options);
-  const CustomerOptionRes = useSelector(
-    (state) => state.Option.optionsCustomer
-  );
+  // const VendorOptionRes = useSelector((state) => state.Option.options);
+  // const CustomerOptionRes = useSelector(
+  //   (state) => state.Option.optionsCustomer
+  // );
 
-  useEffect(() => {
-    if (VendorOptionRes && VendorOptionRes.success) {
-      setVendorOption(VendorOptionRes.data);
-    }
-  }, [VendorOptionRes]);
+  // useEffect(() => {
+  //   if (VendorOptionRes && VendorOptionRes.success) {
+  //     setVendorOption(VendorOptionRes.data);
+  //   }
+  // }, [VendorOptionRes]);
 
-  useEffect(() => {
-    if (CustomerOptionRes && CustomerOptionRes.success) {
-      setCustomer(CustomerOptionRes.data);
-    }
-  }, [CustomerOptionRes]);
+  // useEffect(() => {
+  //   if (CustomerOptionRes && CustomerOptionRes.success) {
+  //     setCustomer(CustomerOptionRes.data);
+  //   }
+  // }, [CustomerOptionRes]);
 
-  useEffect(() => {
-    let params = {
-      limit: 10,
-    };
-    fetchVendorOptions(params);
-    fetchCustomerOptions(params);
-  }, []);
+  // useEffect(() => {
+  //   let params = {
+  //     limit: 10,
+  //   };
+  //   fetchVendorOptions(params);
+  //   fetchCustomerOptions(params);
+  // }, []);
 
-  const fetchVendorOptions = (data) => {
-    dispatch(getOptionsData(data));
-  };
-  const fetchCustomerOptions = (data) => {
-    dispatch(getCustomerOptionsData(data));
-  };
-  const handleOptionChange = (inputValue) => {
-    let params = {
-      limit: 10,
-    };
-    if (inputValue) {
-      params.keyword = inputValue;
-      fetchVendorOptions(params);
-    } else {
-      fetchVendorOptions(params);
-    }
-  };
-  const handleCustomerOptionChange = (inputValue) => {
-    let params = {
-      limit: 10,
-    };
-    if (inputValue) {
-      params.keyword = inputValue;
-      fetchCustomerOptions(params);
-    } else {
-      fetchCustomerOptions(params);
-    }
-  };
+  // const fetchVendorOptions = (data) => {
+  //   dispatch(getOptionsData(data));
+  // };
+  // const fetchCustomerOptions = (data) => {
+  //   dispatch(getCustomerOptionsData(data));
+  // };
+  // const handleOptionChange = (inputValue) => {
+  //   let params = {
+  //     limit: 10,
+  //   };
+  //   if (inputValue) {
+  //     params.keyword = inputValue;
+  //     fetchVendorOptions(params);
+  //   } else {
+  //     fetchVendorOptions(params);
+  //   }
+  // };
+  // const handleCustomerOptionChange = (inputValue) => {
+  //   let params = {
+  //     limit: 10,
+  //   };
+  //   if (inputValue) {
+  //     params.keyword = inputValue;
+  //     fetchCustomerOptions(params);
+  //   } else {
+  //     fetchCustomerOptions(params);
+  //   }
+  // };
   return (
     <React.Fragment>
       <Col sm={6} className="col-xxl-2">
@@ -333,21 +316,21 @@ const OrderGlobalFilter = () => {
         </div>
       </Col>
 
-      <DynamicSelectComponent
+      {/* <DynamicSelectComponent
         handleOptionChange={handleOptionChange}
         placeholder="Select Vendor"
         options={vendorOption}
         name="choices-single-default"
         id="idVendorOrder"
-      />
+      /> */}
       
-      <DynamicSelectComponent
+      {/* <DynamicSelectComponent
         handleOptionChange={handleCustomerOptionChange}
         placeholder="Select Customer"
         options={customer}
         name="choices-payment-default"
         id="idCustomer"
-      />
+      /> */}
 
       <Col>
         <div>
@@ -368,19 +351,19 @@ const OrderGlobalFilter = () => {
 const CatalogGlobalFilter = () => {
   const dispatch = useDispatch();
 
-  const [vendorOption, setVendorOption] = useState([]);
+  // const [vendorOption, setVendorOption] = useState([]);
   const [categories, setCategories] = useState([]);
 
-  const VendorOptionRes = useSelector((state) => state.Option.options);
+  // const VendorOptionRes = useSelector((state) => state.Option.options);
   const categoriesRes = useSelector(
     (state) => state.CategorySlice.categoriesData
   );
 
-  useEffect(() => {
-    if (VendorOptionRes && VendorOptionRes.success) {
-      setVendorOption(VendorOptionRes.data);
-    }
-  }, [VendorOptionRes]);
+  // useEffect(() => {
+  //   if (VendorOptionRes && VendorOptionRes.success) {
+  //     setVendorOption(VendorOptionRes.data);
+  //   }
+  // }, [VendorOptionRes]);
 
   useEffect(() => {
     if (categoriesRes && categoriesRes.length > 0) {
@@ -388,15 +371,15 @@ const CatalogGlobalFilter = () => {
     }
   }, [categoriesRes]);
 
-  useEffect(() => {
-    let params = {
-      limit: 10,
-    };
-    fetchVendorOptions(params);
-  }, []);
+  // useEffect(() => {
+  //   let params = {
+  //     limit: 10,
+  //   };
+  //   fetchVendorOptions(params);
+  // }, []);
 
   const fetchVendorOptions = (data) => {
-    dispatch(getOptionsData(data));
+    // dispatch(getOptionsData(data));
     dispatch(getGetCategoriesData());
   };
 
@@ -404,12 +387,12 @@ const CatalogGlobalFilter = () => {
     let params = {
       limit: 10,
     };
-    if (inputValue) {
-      params.keyword = inputValue;
+    // if (inputValue) {
+    //   params.keyword = inputValue;
+      // fetchVendorOptions(params);
+    // } else {
       fetchVendorOptions(params);
-    } else {
-      fetchVendorOptions(params);
-    }
+    // }
   };
 
   return (
@@ -440,13 +423,13 @@ const CatalogGlobalFilter = () => {
         </div>
       </Col>
 
-      <DynamicSelectComponent
+      {/* <DynamicSelectComponent
         handleOptionChange={handleOptionChange}
         placeholder="Select Vendor"
         options={vendorOption}
         name="choices-single-default"
         id="idVendor"
-      />
+      /> */}
 
       <DynamicSelectComponent
         handleOptionChange={handleOptionChange}
@@ -474,38 +457,6 @@ const CatalogGlobalFilter = () => {
 
 const TicketsListGlobalFilter = () => {
   const dispatch = useDispatch();
-
-  const [vendorOption, setVendorOption] = useState([]);
-
-  const VendorOptionRes = useSelector((state) => state.Option.options);
-
-  useEffect(() => {
-    if (VendorOptionRes && VendorOptionRes.success) {
-      setVendorOption(VendorOptionRes.data);
-    }
-  }, [VendorOptionRes]);
-
-  useEffect(() => {
-    let params = {
-      limit: 10,
-    };
-    fetchVendorOptions(params);
-  }, []);
-
-  const fetchVendorOptions = (data) => {
-    dispatch(getOptionsData(data));
-  };
-  const handleOptionChange = (inputValue) => {
-    let params = {
-      limit: 10,
-    };
-    if (inputValue) {
-      params.keyword = inputValue;
-      fetchVendorOptions(params);
-    } else {
-      fetchVendorOptions(params);
-    }
-  };
   return (
     <React.Fragment>
       <Col sm={6} className="col-xxl-2">
@@ -533,14 +484,6 @@ const TicketsListGlobalFilter = () => {
           />
         </div>
       </Col>
-
-      <DynamicSelectComponent
-        handleOptionChange={handleOptionChange}
-        placeholder="Select Vendor"
-        options={vendorOption}
-        name="choices-single-default"
-        id="idVendorSupport"
-      />
 
       <Col sm={4} className="col-xxl-2">
         <div>

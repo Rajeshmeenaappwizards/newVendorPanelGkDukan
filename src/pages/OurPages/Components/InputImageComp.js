@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Input } from "reactstrap";
 import axios from "axios";
+import { BASE_URL } from "../../../helpers/url_helper";
 
 function InputImageComp({ onFileUpload }) {
   const handleChange = async (event) => {
@@ -11,7 +12,7 @@ function InputImageComp({ onFileUpload }) {
       formData.append("upload", event.target.files[0]);
 
       const res = await fetch(
-        "https://seahorse-app-yobkt.ondigitalocean.app/admin/media/single",
+        `${BASE_URL}/vendor/media/single`,
         {
           method: "POST",
           body: formData,

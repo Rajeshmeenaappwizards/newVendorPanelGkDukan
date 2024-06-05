@@ -50,8 +50,8 @@ const Reviews = () => {
   // }, [handleClick]);
 
   useEffect(() => {
-    if (allReviewsData && allReviewsData.success) {
-      setReviewList(allReviewsData.data);
+    if (allReviewsData) {
+      setReviewList(allReviewsData);
     }
   }, [allReviewsData]);
 
@@ -61,7 +61,7 @@ const Reviews = () => {
 
   const handleClick = async (id, status) => {
     const data = {
-      id: id._id,
+      id: id,
       status: status,
     };
     const res = await dispatch(postReviewStatus(data));
@@ -78,7 +78,7 @@ const Reviews = () => {
   };
 
   const handleDelete = async (id) => {
-    const reviewId = id._id;
+    const reviewId = id;
     const res = await dispatch(deletetReviewStatus(reviewId));
 
     if (res.payload) {
@@ -96,30 +96,30 @@ const Reviews = () => {
     () => [
       {
         header: "Product Name",
-        accessorKey: "productDetails.name",
+        accessorKey: "product_id.name",
         enableColumnFilter: false,
         cell: (cell) => (
           <Link
-            to={`/products/${cell.row.original.productDetails._id}`}
+            to={`/products/${cell.row.original._id}`}
             className="fw-medium link-primary"
           >
-            {cell.getValue().substring(0, 30) + "..."}
+            {cell.getValue().substring(0, 50) + '....'}
           </Link>
         ),
       },
-      {
-        header: "Customer Id",
-        accessorKey: "customerDetails._id",
-        enableColumnFilter: false,
-        cell: (cell) => (
-          <Link
-            to={`/customer/${cell.row.original.customerDetails._id}`}
-            className="fw-medium link-primary"
-          >
-            {cell.getValue()}
-          </Link>
-        ),
-      },
+      // {
+      //   header: "Customer Id",
+      //   accessorKey: "customerDetails._id",
+      //   enableColumnFilter: false,
+      //   cell: (cell) => (
+      //     <Link
+      //       to={`/customer/${cell.row.original.customerDetails._id}`}
+      //       className="fw-medium link-primary"
+      //     >
+      //       {cell.getValue()}
+      //     </Link>
+      //   ),
+      // },
       {
         header: "Stars",
         accessorKey: "rating",
@@ -182,7 +182,13 @@ const Reviews = () => {
         header: "Action",
         cell: (cell) => (
           <ul className="list-inline hstack gap-2 mb-0">
-            <UncontrolledDropdown>
+            <Link
+                  to={`/products/${cell.row.original._id}`}
+                >
+                  <i className="ri-eye-fill align-bottom text-muted" style={{ fontSize: '1.1rem' }}></i>{" "}
+                
+                </Link>
+            {/* <UncontrolledDropdown>
               <DropdownToggle
                 href="#"
                 className="btn btn-soft-secondary btn-sm"
@@ -190,49 +196,38 @@ const Reviews = () => {
               >
                 <i className="ri-more-fill" />
               </DropdownToggle>
-              <DropdownMenu className="dropdown-menu-end">
-                <DropdownItem
-                  href={`/products/${cell.row.original.productDetails._id}`}
-                >
-                  {/* <i className="ri-eye-fill align-bottom me-2 text-muted"></i>{" "} */}
-                  View
-                </DropdownItem>
-
+              <DropdownMenu className="dropdown-menu-end"> */}
+                
+{/* 
                 <DropdownItem
                   onClick={() => handleClick(cell.row.original, "approved")}
                 >
-                  {/* <i className="ri-pencil-fill align-bottom me-2 text-muted"></i>{" "} */}
                   Approved
                 </DropdownItem>
 
                 <DropdownItem
                   onClick={() => handleClick(cell.row.original, "pending")}
                 >
-                  {/* <i className="ri-pencil-fill align-bottom me-2 text-muted"></i>{" "} */}
                   Pending
                 </DropdownItem>
 
                 <DropdownItem
                   onClick={() => handleClick(cell.row.original, "rejected")}
                 >
-                  {/* <i className="ri-pencil-fill align-bottom me-2 text-muted"></i>{" "} */}
                   Rejected
                 </DropdownItem>
 
                 <DropdownItem
                   onClick={() => handleClick(cell.row.original, "hidden")}
                 >
-                  {/* <i className="ri-pencil-fill align-bottom me-2 text-muted"></i>{" "} */}
                   Hidden
                 </DropdownItem>
 
-                {/* <DropdownItem divider /> */}
                 <DropdownItem onClick={() => handleDelete(cell.row.original)}>
-                  {/* <i className="ri-delete-bin-fill align-bottom me-2 text-muted"></i>{" "} */}
                   Delete
-                </DropdownItem>
-              </DropdownMenu>
-            </UncontrolledDropdown>
+                </DropdownItem> */}
+              {/* </DropdownMenu>
+            </UncontrolledDropdown> */}
           </ul>
         ),
       },

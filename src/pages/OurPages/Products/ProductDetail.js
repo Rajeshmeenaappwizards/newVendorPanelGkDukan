@@ -253,7 +253,7 @@ function ProductDetail(props) {
                             Customer Review )
                           </div>
                         </div>
-                        <div className="d-flex align-items-center gap-3">
+                        {/* <div className="d-flex align-items-center gap-3">
                           <div className="">Status</div>
 
                           <select
@@ -289,7 +289,7 @@ function ProductDetail(props) {
                               Approved
                             </option>
                           </select>
-                        </div>
+                        </div> */}
                       </div>
 
                       <Row className="mt-4">

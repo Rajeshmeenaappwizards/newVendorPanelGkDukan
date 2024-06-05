@@ -93,11 +93,11 @@ const NotificationAccordian = () => {
                               {item.title}
                             </div>
                           </button>
-                          <i
+                          {/* <i
                             className="ri-delete-bin-line me-2"
                             style={{ fontSize: "1rem", cursor: "pointer" }}
                             onClick={() => handleDelete(item?._id)}
-                          ></i>
+                          ></i> */}
                         </div>
                       </h2>
                       <Collapse

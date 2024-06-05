@@ -43,16 +43,16 @@ const NoticeAccordian = () => {
     setActiveIndex(activeIndex === index ? null : index);
   };
 
-  const handleDelete = (id) => {
-    if (id) {
-      const confirm = window.confirm("Are you sure you want to delete");
-      if (confirm) {
-        dispatch(deleteNotice(id));
-      }
-    }
-  };
+  // const handleDelete = (id) => {
+  //   if (id) {
+  //     const confirm = window.confirm("Are you sure you want to delete");
+  //     if (confirm) {
+  //       dispatch(deleteNotice(id));
+  //     }
+  //   }
+  // };
 
-  document.title = "Accordions | GK Dukaan - Ghar Ki Dukaan";
+  document.title = "Notice";
 
   return (
     <React.Fragment>
@@ -85,11 +85,11 @@ const NoticeAccordian = () => {
                               {item.title}
                             </div>
                           </button>
-                          <i
+                          {/* <i
                             className="ri-delete-bin-line me-2"
                             style={{ fontSize: "1rem", cursor: "pointer" }}
                             onClick={() => handleDelete(item?._id)}
-                          ></i>
+                          ></i> */}
                         </div>
                       </h2>
                       <Collapse

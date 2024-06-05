@@ -238,9 +238,9 @@ export const GET_APPLICATION_LIST = "/application-list";
 export const GET_API_KEY = "/api-key";
 
 //  Catalog
-export const GET_CATALOG = "/admin/catalog";
-export const GET_SINGLE_CATALOG = "/admin/catalog/details";
-export const GET_CATALOG_BY_STATUS = "/admin/catalog/list/status";
+export const GET_CATALOG = "/vendor/catalog";
+export const GET_SINGLE_CATALOG = "/vendor/catalog/details";
+export const GET_CATALOG_BY_STATUS = "/vendor/catalog/list/status";
 // Attribute
 export const GET_ATTRIBUTE = "/admin/attributes/list/all";
 // TaxSlabs
@@ -248,28 +248,28 @@ export const GET_TAXSLABS = "/admin/taxSlabs/list/all";
 export const ADD_TAXSLABS = "/admin/taxSlabs";
 
 // Orders
-export const GET_ALL_ORDERS = "/admin/order";
-export const GET_SINGLE_ORDER = "/admin/order/details";
-export const CANCEL_ORDER = "/admin/order/status/cancel";
+export const GET_ALL_ORDERS = "/vendor/order";
+export const GET_SINGLE_ORDER = "/vendor/order/details";
+export const CANCEL_ORDER = "/vendor/order/updatestatus/cancelled";
 
 // Customer
 export const GET_ALL_CUSTOMER = "/admin/customer";
 export const GET_SINGLE_CUSTOMER = "/admin/customer";
 
 // Our Page Support Ticket
-export const GET_ALL_SUPPORT_TICKET = "/admin/support-ticket";
-export const DELETE_SUPPORT_TICKET = "/admin/support-ticket";
-export const GET_SINGLE_SUPPORT_TICKET = "/admin/support-ticket";
-export const ADD_SUPPORT_TICKET = "/admin/support-ticket";
-export const STATUS_UPDATE_SUPPORT_TICKET = "/admin/support-ticket/status";
-export const ADD_MESSAGE_TO_SUPPORT_TICKET = "/admin/support-ticket/messages";
+export const GET_ALL_SUPPORT_TICKET = "/vendor/support-ticket";
+export const DELETE_SUPPORT_TICKET = "/vendor/support-ticket";
+export const GET_SINGLE_SUPPORT_TICKET = "/vendor/support-ticket";
+export const ADD_SUPPORT_TICKET = "/vendor/support-ticket";
+export const STATUS_UPDATE_SUPPORT_TICKET = "/vendor/support-ticket/status";
+export const ADD_MESSAGE_TO_SUPPORT_TICKET = "/vendor/support-ticket/messages";
 
-export const GET_ORDERS_BY_STATUS = "/admin/order/list/status";
+export const GET_ORDERS_BY_STATUS = "/vendor/order/list/status";
 
 // Products
-export const GET_ALL_PRODUCTS = "/admin/product/list/products";
-export const GET_ALL_PRODUCTS_BY_STATUS = "/admin/product/list/status";
-export const UPDATE_PRODUCTS_BY_STATUS = "/admin/product";
+export const GET_ALL_PRODUCTS = "/vendor/product/list/products";
+export const GET_ALL_PRODUCTS_BY_STATUS = "/vendor/product/list/status";
+export const UPDATE_PRODUCTS_BY_STATUS = "/vendor/product";
 
 // Reviews
-export const GET_ALL_REVIEWS = "/admin/reviews/list/all";
+export const GET_ALL_REVIEWS = "/vendor/reveiws";

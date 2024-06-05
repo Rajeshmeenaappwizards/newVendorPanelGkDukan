@@ -8,6 +8,7 @@ import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
 import TaxSlabSelect from './TaxSlabSelect';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProductAttributeById } from '../../../slices/thunks';
+import { BASE_URL } from '../../../helpers/url_helper';
 
 registerPlugin(FilePondPluginImagePreview);
 
@@ -35,9 +36,9 @@ const FullscreenModal = ({ fullScreenModal = false, handleModalChange = () => { 
 
 
     useEffect(() => {
-        if (catagoryId) {
-            dispatch(getProductAttributeById(catagoryId));
-        }
+        // if (catagoryId) {
+        //     dispatch(getProductAttributeById(catagoryId));
+        // }
         if (AddedCatalogProductRes && AddedCatalogProductRes.success) {
             setFiles([]);
             setProductName('');
@@ -60,7 +61,7 @@ const FullscreenModal = ({ fullScreenModal = false, handleModalChange = () => { 
 
     useEffect(() => {
         if (singleProductState && singleProductState._id && singleProductState.categories_id) {
-            dispatch(getProductAttributeById(singleProductState.categories_id));
+            // dispatch(getProductAttributeById(singleProductState.categories_id));
             setProductName(singleProductState.name || '');
             setMrp(singleProductState.mrp || '');
             setSalePrice(singleProductState.sale_price || '');
@@ -94,7 +95,6 @@ const FullscreenModal = ({ fullScreenModal = false, handleModalChange = () => { 
             name: productName,
             short_description: shortDescription,
             long_description: longDescription,
-            tax_slabs: taxSlabs,
             attributes: attributesValues,
             weight: productWeight,
             sku: sku,
@@ -150,7 +150,7 @@ const FullscreenModal = ({ fullScreenModal = false, handleModalChange = () => { 
                                         const formData = new FormData();
                                         formData.append("upload", file, file.name);
 
-                                        fetch('https://seahorse-app-yobkt.ondigitalocean.app/admin/media/single', {
+                                        fetch(`${BASE_URL}/vendor/media/single`, {
                                             method: 'POST',
                                             body: formData,
                                             headers: {
@@ -279,15 +279,6 @@ const FullscreenModal = ({ fullScreenModal = false, handleModalChange = () => { 
                                 placeholder="Enter HSN Code"
                                 value={hsncode}
                                 onChange={(e) => setHsncode(e.target.value)}
-                            />
-                        </FormGroup>
-                    </Col>
-                    <Col lg={4}>
-                        <FormGroup>
-                            <Label for="taxSlabs">Tax Slabs*</Label>
-                            <TaxSlabSelect
-                                value={taxSlabs}
-                                onChange={setTaxSlabs}
                             />
                         </FormGroup>
                     </Col>
