@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Card, CardBody, CardHeader, Col } from "reactstrap";
 import { useDispatch } from "react-redux";
@@ -7,17 +7,22 @@ import { getRecentOrderApiData } from "../../slices/thunks";
 
 const RecentOrders = () => {
   const dispatch = useDispatch();
+  const [page, setPage] = useState(1);
 
   const recentOrderRes = useSelector(
     (state) => state.DashboardEcommerce.recentOrderData
   );
 
   useEffect(() => {
-    fetchRecentOrdersApi();
-  }, []);
+    let params = {
+      page: page,
+      limit: 5,
+    };
+    fetchRecentOrdersApi(params);
+  }, [page]);
 
-  const fetchRecentOrdersApi = () => {
-    dispatch(getRecentOrderApiData());
+  const fetchRecentOrdersApi = (data) => {
+    dispatch(getRecentOrderApiData(data));
   };
 
   return (
@@ -37,10 +42,10 @@ const RecentOrders = () => {
                 <thead className="text-muted table-light">
                   <tr>
                     <th scope="col">Order ID</th>
-                    <th scope="col">Customer</th>
+                    {/* <th scope="col">Customer</th> */}
                     <th scope="col">Product</th>
                     <th scope="col">Amount</th>
-                    <th scope="col">Vendor</th>
+                    {/* <th scope="col">Vendor</th> */}
                     <th scope="col">Status</th>
                     {/* <th scope="col">Rating</th> */}
                   </tr>
@@ -59,11 +64,11 @@ const RecentOrders = () => {
                             #{item.orderId}
                           </Link>
                         </td>
-                        <td>
+                        {/* <td>
                           <span className="text-success">
                             {item?.customerName || item?.customerPhone}
                           </span>
-                        </td>
+                        </td> */}
                         <td>
                           <div className="d-flex align-items-center">
                             <div className="flex-shrink-0 me-2">
@@ -81,7 +86,7 @@ const RecentOrders = () => {
                         <td>
                           <span className="text-success">{item.amount}.00</span>
                         </td>
-                        <td>{item.vendor}</td>
+                        {/* <td>{item.vendor}</td> */}
                         <td>
                           <span
                             className={
@@ -113,6 +118,64 @@ const RecentOrders = () => {
                     ))}
                 </tbody>
               </table>
+            </div>
+
+            <div className="align-items-center mt-4 pt-2 justify-content-between row text-center text-sm-start">
+              <div className="col-sm">
+                <div className="text-muted">
+                  Showing <span className="fw-semibold">5</span> of
+                  <span className="fw-semibold">15</span> Results
+                </div>
+              </div>
+              <div className="col-sm-auto mt-3 mt-sm-0">
+                <ul className="pagination pagination-separated pagination-sm mb-0 justify-content-center">
+                  <li className={`page-item ${page === 1 && "disabled"}`}>
+                    <button
+                      onClick={() => setPage((pre) => pre - 1)}
+                      to="#"
+                      className="page-link"
+                    >
+                      ←
+                    </button>
+                  </li>
+                  <li className={`page-item ${page === 1 && "active"}`}>
+                    <button
+                      onClick={() => setPage(1)}
+                      to="#"
+                      className="page-link"
+                    >
+                      1
+                    </button>
+                  </li>
+                  <li className={`page-item ${page === 2 && "active"}`}>
+                    <button
+                      onClick={() => setPage(2)}
+                      to="#"
+                      className="page-link"
+                    >
+                      2
+                    </button>
+                  </li>
+                  <li className={`page-item ${page === 3 && "active"}`}>
+                    <button
+                      onClick={() => setPage(3)}
+                      to="#"
+                      className="page-link"
+                    >
+                      3
+                    </button>
+                  </li>
+                  <li className={`page-item ${page === 3 && "disabled"}`}>
+                    <button
+                      onClick={() => setPage((pre) => pre + 1)}
+                      to="#"
+                      className="page-link"
+                    >
+                      →
+                    </button>
+                  </li>
+                </ul>
+              </div>
             </div>
           </CardBody>
         </Card>

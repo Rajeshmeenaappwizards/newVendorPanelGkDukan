@@ -23,9 +23,19 @@ import {
   getAllProducts,
   getProductsByStatus,
 } from "../../../slices/product/thunk";
-import { resetProductState, setPageProduct, setStatusProduct } from "../../../slices/product/reducer";
+import {
+  resetProductState,
+  setPageProduct,
+  setStatusProduct,
+} from "../../../slices/product/reducer";
 
-const Products = ({ header = true, catalogId = "", toggleDelete, toggleEdit, toggleAdd }) => {
+const Products = ({
+  header = true,
+  catalogId = "",
+  toggleDelete,
+  toggleEdit,
+  toggleAdd,
+}) => {
   const [productList, setProductList] = useState([]);
   const [activeTab, setActiveTab] = useState("1");
   const dispatch = useDispatch();
@@ -38,13 +48,13 @@ const Products = ({ header = true, catalogId = "", toggleDelete, toggleEdit, tog
   const endDateRes = useSelector((state) => state.Products.endDate);
   const customerIdRes = useSelector((state) => state.Products.category);
   const keywordRes = useSelector((state) => state.Products.keyword);
-  const EditedProductRes = useSelector((state) => state.Catalog.editProductData);
-
+  const EditedProductRes = useSelector(
+    (state) => state.Catalog.editProductData
+  );
 
   useEffect(() => {
-    return () => dispatch(resetProductState())
-  }, [])
-
+    return () => dispatch(resetProductState());
+  }, []);
 
   useEffect(() => {
     const params = {
@@ -58,17 +68,24 @@ const Products = ({ header = true, catalogId = "", toggleDelete, toggleEdit, tog
       keyword: keywordRes,
     };
     if (catalogId) {
-      params.catalogId = catalogId
+      params.catalogId = catalogId;
     }
     fetchAllProducts(params);
-  }, [pageRes, vendorIdRes, statusRes, endDateRes, customerIdRes, keywordRes, EditedProductRes]);
+  }, [
+    pageRes,
+    vendorIdRes,
+    statusRes,
+    endDateRes,
+    customerIdRes,
+    keywordRes,
+    EditedProductRes,
+  ]);
 
   useEffect(() => {
     if (ProductRes && ProductRes.success) {
       setProductList(ProductRes.data);
     }
   }, [ProductRes]);
-
 
   const fetchAllProducts = (data) => {
     dispatch(getAllProducts(data));
@@ -78,11 +95,11 @@ const Products = ({ header = true, catalogId = "", toggleDelete, toggleEdit, tog
     if (activeTab !== tab) {
       setActiveTab(tab);
       if (type !== "all") {
-        dispatch(setPageProduct(1))
+        dispatch(setPageProduct(1));
         dispatch(setStatusProduct(type));
       } else {
-        dispatch(setPageProduct(1))
-        dispatch(setStatusProduct(''));
+        dispatch(setPageProduct(1));
+        dispatch(setStatusProduct(""));
       }
     }
   };
@@ -100,7 +117,9 @@ const Products = ({ header = true, catalogId = "", toggleDelete, toggleEdit, tog
             to={`/products/${cell.row.original._id}`}
             className="fw-medium link-primary"
           >
-            {cell.getValue().length > 30 ? `${cell.getValue().substring(0, 30)}...` : cell.getValue()}
+            {cell.getValue().length > 30
+              ? `${cell.getValue().substring(0, 30)}...`
+              : cell.getValue()}
           </Link>
         ),
       },
@@ -156,7 +175,7 @@ const Products = ({ header = true, catalogId = "", toggleDelete, toggleEdit, tog
                 ></i>
               </Link>
             </div>
-          )
+          );
         },
       },
     ],
@@ -168,21 +187,34 @@ const Products = ({ header = true, catalogId = "", toggleDelete, toggleEdit, tog
         header: "Name",
         accessorKey: "name",
         enableColumnFilter: false,
-        cell: (cell) => (
-          <Link
-            to={`/products/${cell.row.original._id}`}
-            className="fw-medium link-primary"
-          >
-            {cell.getValue()}
-          </Link>
-        ),
+        cell: (cell) => {
+          const name = cell.getValue();
+          const truncatedName =
+            name.length > 50 ? `${name.substring(0, 60)}...` : name;
+
+          return (
+            <Link
+              to={`/products/${cell.row.original._id}`}
+              className="fw-medium link-primary"
+            >
+              {truncatedName}
+            </Link>
+          );
+        },
       },
+
       {
         header: "Category",
         accessorKey: "category",
         enableColumnFilter: false,
-        cell: (cell) => cell.getValue(),
+        cell: (cell) => {
+          const category = cell.getValue();
+          const truncatedCategory =
+            category.length > 30 ? `${category.substring(0, 30)}...` : category;
+          return truncatedCategory;
+        },
       },
+
       {
         header: "MRP",
         accessorKey: "mrp",
@@ -267,115 +299,125 @@ const Products = ({ header = true, catalogId = "", toggleDelete, toggleEdit, tog
     <React.Fragment>
       <div className={header ? "page-content" : ""}>
         <Container fluid>
-          {header && <BreadCrumb title="Products" pageTitle="Tables" />
-          }          <Row>
+          {header && <BreadCrumb title="Products" pageTitle="Tables" />}{" "}
+          <Row>
             <Col lg={12}>
               <Card>
                 <CardHeader className="d-flex justify-content-between align-items-center">
-                  <h4 className="card-title mb-0">{header ? "Products" : "Catalog Products"}</h4>
-                  {!header && <button onClick={() => toggleAdd(true)} className="btn btn-primary">Add Products</button>
-                  }
+                  <h4 className="card-title mb-0">
+                    {header ? "Products" : "Catalog Products"}
+                  </h4>
+                  {!header && (
+                    <button
+                      onClick={() => toggleAdd(true)}
+                      className="btn btn-primary"
+                    >
+                      Add Products
+                    </button>
+                  )}
                 </CardHeader>
 
                 <CardBody>
-                  {header && <Nav
-                    className="nav-tabs nav-tabs-custom nav-success"
-                    role="tablist"
-                  >
-                    <NavItem>
-                      <NavLink
-                        className={classnames(
-                          { active: activeTab === "1" },
-                          "fw-semibold"
-                        )}
-                        onClick={() => {
-                          toggleTab("1", "all");
-                        }}
-                        href="#"
-                      >
-                        <i className="ri-store-2-fill me-1 align-bottom"></i>{" "}
-                        All Products
-                      </NavLink>
-                    </NavItem>
-                    <NavItem>
-                      <NavLink
-                        className={classnames(
-                          { active: activeTab === "2" },
-                          "fw-semibold"
-                        )}
-                        onClick={() => {
-                          toggleTab("2", "pending_review");
-                        }}
-                        href="#"
-                      >
-                        <i className="ri-checkbox-circle-line me-1 align-bottom"></i>{" "}
-                        Pending Review
-                      </NavLink>
-                    </NavItem>
-                    <NavItem>
-                      <NavLink
-                        className={classnames(
-                          { active: activeTab === "3" },
-                          "fw-semibold"
-                        )}
-                        onClick={() => {
-                          toggleTab("3", "approved");
-                        }}
-                        href="#"
-                      >
-                        <i className="ri-truck-line me-1 align-bottom"></i>{" "}
-                        Approved{" "}
-                        {/* <span className="badge bg-danger align-middle ms-1">
+                  {header && (
+                    <Nav
+                      className="nav-tabs nav-tabs-custom nav-success"
+                      role="tablist"
+                    >
+                      <NavItem>
+                        <NavLink
+                          className={classnames(
+                            { active: activeTab === "1" },
+                            "fw-semibold"
+                          )}
+                          onClick={() => {
+                            toggleTab("1", "all");
+                          }}
+                          href="#"
+                        >
+                          <i className="ri-store-2-fill me-1 align-bottom"></i>{" "}
+                          All Products
+                        </NavLink>
+                      </NavItem>
+                      <NavItem>
+                        <NavLink
+                          className={classnames(
+                            { active: activeTab === "2" },
+                            "fw-semibold"
+                          )}
+                          onClick={() => {
+                            toggleTab("2", "pending_review");
+                          }}
+                          href="#"
+                        >
+                          <i className="ri-checkbox-circle-line me-1 align-bottom"></i>{" "}
+                          Pending Review
+                        </NavLink>
+                      </NavItem>
+                      <NavItem>
+                        <NavLink
+                          className={classnames(
+                            { active: activeTab === "3" },
+                            "fw-semibold"
+                          )}
+                          onClick={() => {
+                            toggleTab("3", "approved");
+                          }}
+                          href="#"
+                        >
+                          <i className="ri-truck-line me-1 align-bottom"></i>{" "}
+                          Approved{" "}
+                          {/* <span className="badge bg-danger align-middle ms-1">
                           2
                         </span> */}
-                      </NavLink>
-                    </NavItem>
-                    <NavItem>
-                      <NavLink
-                        className={classnames(
-                          { active: activeTab === "4" },
-                          "fw-semibold"
-                        )}
-                        onClick={() => {
-                          toggleTab("4", "rejected");
-                        }}
-                        href="#"
-                      >
-                        <i className="ri-arrow-left-right-fill me-1 align-bottom"></i>{" "}
-                        Rejected
-                      </NavLink>
-                    </NavItem>
-                    <NavItem>
-                      <NavLink
-                        className={classnames(
-                          { active: activeTab === "5" },
-                          "fw-semibold"
-                        )}
-                        onClick={() => {
-                          toggleTab("5", "paused");
-                        }}
-                        href="#"
-                      >
-                        <i className="ri-close-circle-line me-1 align-bottom"></i>{" "}
-                        Paused
-                      </NavLink>
-                    </NavItem>
-                    <NavItem>
-                      <NavLink
-                        className={classnames(
-                          { active: activeTab === "6" },
-                          "fw-semibold"
-                        )}
-                        onClick={() => {
-                          toggleTab("6", "hidden");
-                        }}
-                        href="#"
-                      >
-                        <i className="ri-close-circle-line me-1 align-bottom"></i>{" "}
-                        Hidden
-                      </NavLink>
-                    </NavItem>
-                  </Nav>}
+                        </NavLink>
+                      </NavItem>
+                      <NavItem>
+                        <NavLink
+                          className={classnames(
+                            { active: activeTab === "4" },
+                            "fw-semibold"
+                          )}
+                          onClick={() => {
+                            toggleTab("4", "rejected");
+                          }}
+                          href="#"
+                        >
+                          <i className="ri-arrow-left-right-fill me-1 align-bottom"></i>{" "}
+                          Rejected
+                        </NavLink>
+                      </NavItem>
+                      <NavItem>
+                        <NavLink
+                          className={classnames(
+                            { active: activeTab === "5" },
+                            "fw-semibold"
+                          )}
+                          onClick={() => {
+                            toggleTab("5", "paused");
+                          }}
+                          href="#"
+                        >
+                          <i className="ri-close-circle-line me-1 align-bottom"></i>{" "}
+                          Paused
+                        </NavLink>
+                      </NavItem>
+                      <NavItem>
+                        <NavLink
+                          className={classnames(
+                            { active: activeTab === "6" },
+                            "fw-semibold"
+                          )}
+                          onClick={() => {
+                            toggleTab("6", "hidden");
+                          }}
+                          href="#"
+                        >
+                          <i className="ri-close-circle-line me-1 align-bottom"></i>{" "}
+                          Hidden
+                        </NavLink>
+                      </NavItem>
+                    </Nav>
+                  )}
                   <TableContainer
                     data={productList || []}
                     isGlobalFilter={true}

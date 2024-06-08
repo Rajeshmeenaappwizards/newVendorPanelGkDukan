@@ -7,6 +7,8 @@ import { useSelector } from 'react-redux';
 //import images
 
 const ProfileDropdown = () => {
+    const updateRes = useSelector((state) => state.Profile.getProfileState.vendor);
+    console.log('updateRes',updateRes)
 
 
     const profiledropdownData = createSelector(
@@ -18,7 +20,7 @@ const ProfileDropdown = () => {
     // Inside your component
     const { user } = useSelector(profiledropdownData);
 
-    const [userName, setUserName] = useState("Admin");
+    const [userName, setUserName] = useState(updateRes.store_name);
 
     useEffect(() => {
         if (localStorage.getItem("authUser")) {

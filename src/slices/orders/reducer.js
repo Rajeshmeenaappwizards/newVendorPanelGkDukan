@@ -4,10 +4,12 @@ import {
   getAllOrders,
   getOrdersByStatus,
   getSingleOrder,
+  readyToShip,
 } from "./thunk";
 
 export const initialState = {
   orderState: [],
+  ship: [],
   error: {},
   page: 1,
   vendorId: "",
@@ -86,6 +88,15 @@ const orderSlice = createSlice({
     });
 
     builder.addCase(cancelOrder.rejected, (state, action) => {
+      state.error = action.error || null;
+      alert(action.error.message);
+    });
+
+    builder.addCase(readyToShip.fulfilled, (state, action) => {
+      state.ship = action.payload.data;
+    });
+
+    builder.addCase(readyToShip.rejected, (state, action) => {
       state.error = action.error || null;
       alert(action.error.message);
     });

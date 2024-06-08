@@ -7,7 +7,7 @@ import {
   getYearRevenueData as getYearRevenueDataApi,
   getDashboardData,
   getDashboardProductData,
-  getTopVendorsData,
+  getLowStockProductssData,
   getRecentOrderData,
   getTopCategories,
   getRevenueChartDashboardApi
@@ -52,10 +52,10 @@ export const getBestSellingProductData = createAsyncThunk("dashboardEcommerce/ge
     return error;
   }
 });
-export const getTopVendorsApiData = createAsyncThunk("dashboardEcommerce/getTopVendorsApiData", async (data) => {
+export const getLowStockProductsApiData = createAsyncThunk("dashboardEcommerce/getLowStockProductsApiData", async (data) => {
   try {
     var response;
-    response = getTopVendorsData(data);
+    response = getLowStockProductssData(data);
     return response;
   } catch (error) {
     return error;

@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getBestSellingProductData, getRecentOrderApiData, getRevenueChartDashboardData, getRevenueChartsData, getTopCategoriesApiData, getTopVendorsApiData, getWidgetsData } from './thunk';
+import { getBestSellingProductData, getRecentOrderApiData, getRevenueChartDashboardData, getRevenueChartsData, getTopCategoriesApiData, getLowStockProductsApiData, getWidgetsData } from './thunk';
 
 export const initialState = {
   revenueData: [],
   widgetsData: [],
   bestSellingProductData: [],
-  topVendorsData: [],
+  lowStockData: [],
   recentOrderData: [],
   topCategoriesData: [],
   getRevenueChartDashboard: [],
@@ -41,10 +41,10 @@ const DashboardEcommerceSlice = createSlice({
       alert(action.error.message);
     });
 
-    builder.addCase(getTopVendorsApiData.fulfilled, (state, action) => {
-      state.topVendorsData = action.payload;
+    builder.addCase(getLowStockProductsApiData.fulfilled, (state, action) => {
+      state.lowStockData = action.payload;
     });
-    builder.addCase(getTopVendorsApiData.rejected, (state, action) => {
+    builder.addCase(getLowStockProductsApiData.rejected, (state, action) => {
       state.error = action.error.message;
       alert(action.error.message);
     });

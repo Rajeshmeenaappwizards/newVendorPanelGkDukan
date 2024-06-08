@@ -24,7 +24,9 @@ const VendorPayments = () => {
   const [data, setData] = useState(null);
 
   const vendorPaymentData = useSelector(
-    (state) => state.VendorPaymentSlice.getVendorPaymentData.data
+    (state) =>
+      state.VendorPaymentSlice.getVendorPaymentData
+        .getAllVendorsFifteenDaysPayment
   );
 
   const dispatch = useDispatch();
@@ -46,12 +48,12 @@ const VendorPayments = () => {
   const columns = useMemo(
     () => [
       {
-        header: "Vendor Name",
-        accessorKey: "vendorName",
+        header: "Id",
+        accessorKey: "_id",
         enableColumnFilter: false,
         cell: (cell) => (
           <Link
-            to="/apps-ecommerce-vendor-details"
+            // to="/apps-ecommerce-vendor-details"
             className="fw-medium link-primary"
           >
             {cell.getValue()}
@@ -60,7 +62,7 @@ const VendorPayments = () => {
       },
       {
         header: "Amount",
-        accessorKey: "amount",
+        accessorKey: "total_amount",
         enableColumnFilter: false,
         cell: (cell) => cell.getValue(),
       },
@@ -92,37 +94,49 @@ const VendorPayments = () => {
         },
       },
       {
-        header: "Time Created",
-        accessorKey: "timeCreated",
+        header: "Transaction Id",
+        accessorKey: "transactionId",
         enableColumnFilter: false,
         cell: (cell) => (
           <>
-            {new Date(cell.getValue()).toLocaleDateString()},
-            <small className="text-muted">
-              {" "}
-              {new Date(cell.getValue()).toLocaleTimeString()}
-            </small>
+            <small className="text-muted"> {cell.getValue()}</small>
           </>
         ),
       },
       {
-        header: "Action",
-        cell: (cellProps) => (
-          <ul className="list-inline hstack mb-0">
-            <li className="list-inline-item">
-              <Link
-                className="text-primary d-inline-block edit-item-btn"
-                onClick={() => {
-                  const paymentId = cellProps.row.original;
-                  handlePaymentClick(paymentId);
-                }}
-              >
-                <i className="ri-pencil-fill fs-16"></i>
-              </Link>
-            </li>
-          </ul>
+        header: "Image",
+        accessorKey: "media_id.url",
+        enableColumnFilter: false,
+        cell: (cell) => (
+          <a href={cell.getValue()} target="_blank" rel="noopener noreferrer">
+            <img
+              src={cell.getValue()}
+              alt="media_id.name"
+              style={{ width: "100px", height: "50px" }}
+            />
+          </a>
         ),
       },
+      
+
+      // {
+      //   header: "Action",
+      //   cell: (cellProps) => (
+      //     <ul className="list-inline hstack mb-0">
+      //       <li className="list-inline-item">
+      //         <Link
+      //           className="text-primary d-inline-block edit-item-btn"
+      //           onClick={() => {
+      //             const paymentId = cellProps.row.original;
+      //             handlePaymentClick(paymentId);
+      //           }}
+      //         >
+      //           <i className="ri-pencil-fill fs-16"></i>
+      //         </Link>
+      //       </li>
+      //     </ul>
+      //   ),
+      // },
     ],
     []
   );
@@ -142,12 +156,12 @@ const VendorPayments = () => {
       />
       <div className="page-content">
         <Container fluid>
-          <BreadCrumb title="Vendor Payments" pageTitle="Payments" />
+          <BreadCrumb title="Payments" pageTitle="Payments" />
           <Row>
             <Col lg={12}>
               <Card>
                 <CardHeader>
-                  <h4 className="card-title mb-0">Vendor Payments</h4>
+                  <h4 className="card-title mb-0">Payments</h4>
                 </CardHeader>
 
                 <CardBody>

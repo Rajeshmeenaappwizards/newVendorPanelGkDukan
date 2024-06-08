@@ -1,5 +1,6 @@
 //Include Both Helper File with needed methods
-import { postFakeProfile, postJwtProfile } from "../../../helpers/fakebackend_helper";
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import { postFakeProfile, postJwtProfile,getProfileData,updateProfileData } from "../../../helpers/fakebackend_helper";
 
 // action
 import { profileSuccess, profileError, resetProfileFlagChange } from "./reducer";
@@ -39,6 +40,32 @@ export const editProfile = (user) => async (dispatch) => {
     //     dispatch(profileError(error));
     // }
 };
+
+export const getProfileThunk = createAsyncThunk(
+    "profile/getProfileThunk",
+    async (data) => {
+      try {
+        var response;
+        response = getProfileData(data);
+        return response;
+      } catch (error) {
+        return error;
+      }
+    }
+  );
+
+export const updaterofileThunk = createAsyncThunk(
+    "profile/updaterofileThunk",
+    async (data) => {
+      try {
+        var response;
+        response = updateProfileData(data);
+        return response;
+      } catch (error) {
+        return error;
+      }
+    }
+  );
 
 export const resetProfileFlag = () => {
     try {

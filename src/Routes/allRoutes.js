@@ -96,11 +96,15 @@ import TermsCondition from "../pages/Pages/TermsCondition";
 
 // User Profile
 import UserProfile from "../pages/Authentication/user-profile";
+import Profile from "../../src/pages/OurPages/profile/Profile";
 
 const authProtectedRoutes = [
   { path: "/dashboard", component: <DashboardEcommerce /> },
   { path: "/home", component: <Home /> },
   { path: "/mobileHome", component: <MobileHome /> },
+
+  //Profile
+  { path: "/profile", component: <Profile /> },
 
   { path: "/categories", component: <Categories /> },
   { path: "/attributes", component: <Attributes /> },

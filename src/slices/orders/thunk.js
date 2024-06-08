@@ -8,6 +8,7 @@ import {
   getAllOrdersData,
   getOrdersByStatusData,
   getSingleOrderData,
+  readyToShipOrder,
 } from "../../helpers/fakebackend_helper";
 
 export const getAllOrders = createAsyncThunk(
@@ -51,6 +52,18 @@ export const cancelOrder = createAsyncThunk(
   async (orderId) => {
     try {
       const response = cancelOrderData(orderId);
+      return response;
+    } catch (error) {
+      return error;
+    }
+  }
+);
+
+export const readyToShip = createAsyncThunk(
+  "order/readyToShip",
+  async (orderId) => {
+    try {
+      const response = readyToShipOrder(orderId);
       return response;
     } catch (error) {
       return error;

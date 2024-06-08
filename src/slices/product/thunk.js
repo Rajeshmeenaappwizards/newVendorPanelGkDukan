@@ -50,7 +50,6 @@ export const updateProductStatus = createAsyncThunk(
   "product/updateStatusProductData",
   async (data) => {
     try {
-      console.log("first=====", data);
       const response = updateStatusProductData(data);
       return response;
     } catch (error) {

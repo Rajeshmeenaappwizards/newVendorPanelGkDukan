@@ -127,6 +127,9 @@ const Navdata = () => {
     if (iscurrentState !== "Reviews") {
       setIsReviews(false);
     }
+    if (iscurrentState !== "Profile") {
+      setIsProfile(false);
+    }
     if (iscurrentState !== "Support") {
       setIsSupport(false);
     }
@@ -193,6 +196,8 @@ const Navdata = () => {
     isReviews,
     isSupport,
     isCatalogs,
+    isProfile,
+    
 
     isDashboard,
     isApps,
@@ -242,7 +247,7 @@ const Navdata = () => {
   // },
   {
     id: "vendorPayments",
-    label: "Vendor Payments",
+    label: "Payments",
     icon: "ri-money-dollar-circle-line",
     link: "/vendorPayments",
     stateVariables: isVendorPayments,
@@ -250,6 +255,19 @@ const Navdata = () => {
       e.preventDefault();
       setIsVendorPayments(!isVendorPayments);
       setIscurrentState("vendorPayments");
+      updateIconSidebar(e);
+    },
+  },
+  {
+    id: "profile",
+    label: "Profile",
+    icon: "ri-money-dollar-circle-line",
+    link: "/profile",
+    stateVariables: isProfile,
+    click: function (e) {
+      e.preventDefault();
+      setIsProfile(!isProfile);
+      setIscurrentState("profile");
       updateIconSidebar(e);
     },
   },

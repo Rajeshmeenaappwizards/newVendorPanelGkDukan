@@ -7,7 +7,7 @@ export const initialState = {
   loading: false,
   isUserLogout: false,
   errorMsg: false, // for error
-  loginData:{}
+  loginData: {},
 };
 
 const loginSlice = createSlice({
@@ -21,21 +21,21 @@ const loginSlice = createSlice({
       state.errorMsg = true;
     },
     loginSuccess(state, action) {
-      state.user = action.payload
+      state.user = action.payload;
       state.loading = false;
       state.errorMsg = false;
     },
     logoutUserSuccess(state, action) {
-      state.isUserLogout = true
+      state.isUserLogout = true;
     },
     reset_login_flag(state) {
-      state.error = null
+      state.error = null;
       state.loading = false;
       state.errorMsg = false;
     },
     resetLoginData(state) {
       state.loginData = {};
-    }
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(loginApi.fulfilled, (state, action) => {
@@ -43,9 +43,9 @@ const loginSlice = createSlice({
     });
     builder.addCase(loginApi.rejected, (state, action) => {
       state.error = action.error.message;
-alert(action.error.message);
+      alert(action.error.message);
     });
-  }
+  },
 });
 
 export const {
@@ -53,7 +53,7 @@ export const {
   loginSuccess,
   logoutUserSuccess,
   reset_login_flag,
-  resetLoginData
-} = loginSlice.actions
+  resetLoginData,
+} = loginSlice.actions;
 
 export default loginSlice.reducer;

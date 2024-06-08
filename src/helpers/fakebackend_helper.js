@@ -20,6 +20,10 @@ export const isUserAuthenticated = () => {
 export const postFakeRegister = (data) =>
   api.create(url.POST_FAKE_REGISTER, data);
 
+export const postRegister = (data) => api.create(`${url.BASE_URL}/vendor/auth/signup`,data)
+export const postAddressRegister = (data) => api.create(`${url.BASE_URL}/vendor/settings/addresses`,data)
+export const postBankRegister = (data) => api.create(`${url.BASE_URL}/vendor/settings/bank-details`,data)
+
 // Login Method
 export const postFakeLogin = (data) => api.create(url.POST_FAKE_LOGIN, data);
 
@@ -86,6 +90,12 @@ export const updateCategoryById = (data, id) =>
 export const deleteCategoryById = (data) =>
   api.delete(`${url.BASE_URL}/admin/categories/${data}`);
 
+//get profile
+export const getProfileData = (data) =>
+  api.get(`${url.BASE_URL}/vendor/profile`);
+export const updateProfileData = (data) =>
+  api.put(`${url.BASE_URL}/vendor/profile`, data);
+
 //Notification
 export const postNotification = (data) =>
   api.create(`${url.BASE_URL}/vendor/notification`, data);
@@ -103,7 +113,7 @@ export const deleteNoticeById = (data) =>
 
 //vendor payments
 export const getVendorPaymentsData = (data) =>
-  api.get(`${url.BASE_URL}/admin/vendor/list/payments`);
+  api.get(`${url.BASE_URL}/vendor/weeklypayment`);
 export const postVendorPaymentsData = (data) =>
   api.put(`${url.BASE_URL}/admin/vendor/payments/update`, data);
 export const changeVendorStatusData = (data) =>
@@ -395,18 +405,18 @@ export const getAllRevenueData = () => api.get(url.GET_ALLREVENUE_DATA);
 export const getDashboardData = (data) =>
   api.create(`${url.BASE_URL}${url.GET_DASHBOARD_DATA_BY_DATE}`, data);
 export const getRevenueChartDashboardApi = (data) =>
-  api.create(`${url.BASE_URL}/admin/dashboard/chartdata`, data);
+  api.create(`${url.BASE_URL}/vendor/dashboard/chartdata`, data);
 export const getDashboardProductData = (data) =>
   api.create(
-    `${url.BASE_URL}/admin/dashboard/best-selling-products?page=${data.page}&limit=5`,
+    `${url.BASE_URL}/vendor/dashboard/best-selling-products?page=${data.page}&limit=${data.limit}`,
     data
   );
-export const getTopVendorsData = (data) =>
-  api.create(`${url.BASE_URL}/admin/dashboard/top-vendors`, data);
-export const getRecentOrderData = () =>
-  api.get(`${url.BASE_URL}/admin/dashboard/recent-orders`);
+export const getLowStockProductssData = (data) =>
+  api.get(`${url.BASE_URL}/vendor/dashboard/low-stock-products`, data);
+export const getRecentOrderData = (data) =>
+  api.get(`${url.BASE_URL}/vendor/dashboard/recent-orders`,data);
 export const getTopCategories = () =>
-  api.get(`${url.BASE_URL}/admin/dashboard/top-categories`);
+  api.create(`${url.BASE_URL}/vendor/dashboard/top-categories`);
 
 export const getMonthRevenueData = () => api.get(url.GET_MONTHREVENUE_DATA);
 export const getHalfYearRevenueData = () =>
@@ -497,6 +507,9 @@ export const getOrdersByStatusData = (status) =>
 
 export const cancelOrderData = (id) =>
   api.put(`${url.BASE_URL}${url.CANCEL_ORDER}/${id}`);
+
+export const readyToShipOrder = (id) =>
+  api.put(`${url.BASE_URL}${url.READY_TO_SHIP_ORDER}/${id}`);
 // ===========Orders
 
 // =============Customer

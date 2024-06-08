@@ -26,10 +26,10 @@ const BestSellingProducts = () => {
   const bestSellingProductsRes = useSelector(
     (state) => state.DashboardEcommerce.bestSellingProductData
   );
-
   useEffect(() => {
     let params = {
       page: page,
+      limit:5,
       dateFilter: sortOption.value,
     };
     fetchBestSellingProducts(params, sortOption.lable);
@@ -40,7 +40,6 @@ const BestSellingProducts = () => {
       value: data.dateFilter,
       lable: lable,
     };
-
     setSortOption(datas);
     dispatch(getBestSellingProductData(data));
   };
@@ -154,7 +153,7 @@ const BestSellingProducts = () => {
                                   to={`/products/${item._id}`}
                                   className="text-reset"
                                 >
-                                  {item.label.substring(0, 12)}..
+                                  {item.label}..
                                 </Link>
                               </h5>
                               <span className="text-muted">{item.date}</span>
@@ -197,14 +196,7 @@ const BestSellingProducts = () => {
               </table>
             </div>
 
-            <div className="align-items-center mt-4 pt-2 justify-content-between row text-center text-sm-start">
-              <div className="col-sm">
-                <div className="text-muted">
-                  Showing <span className="fw-semibold">5</span> of{" "}
-                  <span className="fw-semibold">15</span> Results
-                </div>
-              </div>
-              <div className="col-sm-auto mt-3 mt-sm-0">
+            <div className="col-sm-auto mt-3 mt-sm-0">
                 <ul className="pagination pagination-separated pagination-sm mb-0 justify-content-center">
                   <li className={`page-item ${page === 1 && "disabled"}`}>
                     <button
@@ -253,7 +245,6 @@ const BestSellingProducts = () => {
                   </li>
                 </ul>
               </div>
-            </div>
           </CardBody>
         </Card>
       </Col>

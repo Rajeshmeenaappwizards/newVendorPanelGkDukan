@@ -9,7 +9,7 @@ import Section from "./Section";
 import StoreVisits from "./StoreVisits";
 import TopSellers from "./TopSellers";
 import { useDispatch } from "react-redux";
-import { getRevenueChartDashboardData, getWidgetsData } from "../../slices/thunks";
+import { getProfileThunk, getRevenueChartDashboardData, getWidgetsData } from "../../slices/thunks";
 import { formatDate } from "../../helpers/date_helper";
 import { getGetCategoriesData } from "../../slices/categories/thunk";
 import { useSelector } from "react-redux";
@@ -22,6 +22,10 @@ const DashboardEcommerce = () => {
 
 
   const revenueDataRes = useSelector((state) => state.DashboardEcommerce.getRevenueChartDashboard)
+
+  useEffect(() =>{
+    dispatch(getProfileThunk())
+  },[])
   
   useEffect(() => {
     const currentDate = new Date();
@@ -39,9 +43,7 @@ const DashboardEcommerce = () => {
   }, [months, dispatch]);
 
   const fetchDashBoardApiData = (data) => {
-
     dispatch(getWidgetsData(data))
-    dispatch(getGetCategoriesData())
   }
 
   const onChangeChartPeriod = (number) => {

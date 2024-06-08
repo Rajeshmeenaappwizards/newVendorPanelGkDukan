@@ -159,7 +159,7 @@ export const GET_JANSALES_DATA = "/janSales-data";
 // Dashboard Ecommerce
 // Revenue
 export const GET_ALLREVENUE_DATA = "/allRevenue-data";
-export const GET_DASHBOARD_DATA_BY_DATE = "/admin/dashboard";
+export const GET_DASHBOARD_DATA_BY_DATE = "/vendor/dashboard";
 export const GET_MONTHREVENUE_DATA = "/monthRevenue-data";
 export const GET_HALFYEARREVENUE_DATA = "/halfYearRevenue-data";
 export const GET_YEARREVENUE_DATA = "/yearRevenue-data";
@@ -251,6 +251,7 @@ export const ADD_TAXSLABS = "/admin/taxSlabs";
 export const GET_ALL_ORDERS = "/vendor/order";
 export const GET_SINGLE_ORDER = "/vendor/order/details";
 export const CANCEL_ORDER = "/vendor/order/updatestatus/cancelled";
+export const READY_TO_SHIP_ORDER = "/vendor/order/updatestatus/readyToShip";
 
 // Customer
 export const GET_ALL_CUSTOMER = "/admin/customer";

@@ -136,11 +136,12 @@ const RevenueCharts = ({ chartId, series, monthsLabel }) => {
 const StoreVisitsCharts = ({ chartId, topCategories }) => {
   const maxCategories = 10;
   const limitedCategories = topCategories.slice(0, maxCategories);
-
-  const Labels = limitedCategories.map((val) =>
-    val.title.length > 10 ? `${val.title.substring(0, 10)}...` : val.title
-  );
-  const series = limitedCategories.map((val) => val.catalogCount);
+  const Labels = limitedCategories.map((val) => {
+    return val.categoryName.length > 10
+      ? `${val.categoryName.substring(0, 10)}...`
+      : val.categoryName;
+  });
+  const series = limitedCategories.map((val) => val.totalProducts);
   const chartStoreColors = useChartColors(chartId);
   var options = {
     labels: Labels,

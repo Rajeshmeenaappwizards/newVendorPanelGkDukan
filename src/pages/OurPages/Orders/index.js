@@ -25,7 +25,7 @@ import TableContainer from "../../../Components/Common/TableContainer";
 import { useSelector, useDispatch } from "react-redux";
 
 //Import actions
-import { cancelOrder, getAllOrders } from "../../../slices/thunks";
+import { cancelOrder, getAllOrders, readyToShip } from "../../../slices/thunks";
 
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -67,6 +67,18 @@ const Orders = ({ header = true, customerId = "", isGlobalFilter = true }) => {
     if (confirmed) {
       if (orderId) {
         const res = await dispatch(cancelOrder(orderId));
+        fetchData()
+      }
+    }
+  };
+
+  const handleReadyToShipOrder = async (orderId) => {
+    const confirmed = window.confirm(
+      "Are you sure you want to Create Shipping ?"
+    );
+    if (confirmed) {
+      if (orderId) {
+        const res = await dispatch(readyToShip(orderId));
         fetchData()
       }
     }
@@ -317,6 +329,13 @@ const Orders = ({ header = true, customerId = "", isGlobalFilter = true }) => {
                     }
                   >
                     Cancel Order
+                  </DropdownItem>
+                  <DropdownItem
+                    onClick={() =>
+                      handleReadyToShipOrder(cellProps.row.original._id)
+                    }
+                  >
+                    Ready to Ship
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>

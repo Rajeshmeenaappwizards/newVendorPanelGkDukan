@@ -2,6 +2,13 @@
 
 // action
 import {
+  postRegister,
+  postAddressRegister,
+  postBankRegister
+} from "../../../helpers/fakebackend_helper";
+
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import {
   registerUserSuccessful,
   registerUserFailed,
   resetRegisterFlagChange,
@@ -54,3 +61,43 @@ export const apiError = () => {
     return error;
   }
 };
+
+
+export const registerApi = createAsyncThunk(
+  "register/registerApi",
+  async (data) => {
+    try {
+      var response;
+      response = postRegister(data);
+      return response;
+    } catch (error) {
+      return error;
+    }
+  }
+);
+
+export const registerAddressApi = createAsyncThunk(
+  "register/registerAddressApi",
+  async (data) => {
+    try {
+      var response;
+      response = postAddressRegister(data);
+      return response;
+    } catch (error) {
+      return error;
+    }
+  }
+);
+
+export const registerBankApi = createAsyncThunk(
+  "register/registerBankApi",
+  async (data) => {
+    try {
+      var response;
+      response = postBankRegister(data);
+      return response;
+    } catch (error) {
+      return error;
+    }
+  }
+);
