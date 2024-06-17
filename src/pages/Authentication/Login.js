@@ -94,7 +94,7 @@ const Login = (props) => {
                                             <img src={logoLight} alt="" height="20" />
                                         </Link> */}
                                     </div>
-                                    <p className="mt-3 fs-15 fw-medium">Gk Dukaan Admin Pannel</p>
+                                    <p className="mt-3 fs-15 fw-medium">Gk Dukaan Vendor Pannel</p>
                                 </div>
                             </Col>
                         </Row>
