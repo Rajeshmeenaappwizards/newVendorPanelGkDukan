@@ -84,7 +84,7 @@ const OrderDetail = (props) => {
     }
   };
 
-  document.title = "Order Details | GK Dukaan - Ghar Ki Dukaan";
+  document.title = "Order Details | GK Dukaan - Vendor";
   return (
     <div className="page-content">
       <Container fluid>

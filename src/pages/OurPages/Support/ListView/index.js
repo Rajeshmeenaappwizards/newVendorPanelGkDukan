@@ -5,7 +5,7 @@ import Widgets from "./Widgets";
 import TicketsData from "./TicketsData";
 
 const ListView = () => {
-  document.title = "Tickets List | GK Dukaan - Ghar Ki Dukaan";
+  document.title = "Tickets List | GK Dukaan - Vendor";
 
   return (
     <React.Fragment>

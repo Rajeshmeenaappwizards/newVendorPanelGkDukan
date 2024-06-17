@@ -41,7 +41,7 @@ const SearchResults = () => {
         setDropdownOpen(!dropdownOpen);
     };
 
-document.title="Search Results | GK Dukaan - Ghar Ki Dukaan";
+document.title="Search Results | GK Dukaan - Vendor";
 
     return (
         <React.Fragment>

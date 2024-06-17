@@ -5,7 +5,7 @@ import BreadCrumb from "../../../Components/Common/BreadCrumb";
 import FeatherIcon from "feather-icons-react";
 
 const PrivacyPolicy = () => {
-  document.title = "Privacy Policy | GK Dukaan - Ghar Ki Dukaan";
+  document.title = "Privacy Policy | GK Dukaan - Vendor";
   return (
     <React.Fragment>
       <div className="page-content">

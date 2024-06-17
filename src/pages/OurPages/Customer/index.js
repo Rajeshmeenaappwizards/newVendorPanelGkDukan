@@ -303,7 +303,7 @@ const Customer = () => {
     return updateTime;
   };
 
-  document.title = "Orders | GK Dukaan - Ghar Ki Dukaan";
+  document.title = "Orders | GK Dukaan - Vendor";
 
   return (
     <div className="page-content">

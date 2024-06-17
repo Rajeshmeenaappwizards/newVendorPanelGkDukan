@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 
 const SiteMap = () => {
-    document.title="SiteMap | GK Dukaan - Ghar Ki Dukaan";
+    document.title="SiteMap | GK Dukaan - Vendor";
     return (
         <div>
             <div className="page-content">

@@ -409,7 +409,7 @@ const Orders = ({ header = true, customerId = "", isGlobalFilter = true }) => {
     return updateTime;
   };
 
-  document.title = "Orders | GK Dukaan - Ghar Ki Dukaan";
+  document.title = "Orders | GK Dukaan - Vendor";
 
   return (
     <div className={header ? "page-content" : ""}>

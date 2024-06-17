@@ -115,7 +115,7 @@ const Faqs = () => {
     setcol11(false)
   }
 
-document.title="FAQs | GK Dukaan - Ghar Ki Dukaan";
+document.title="FAQs | GK Dukaan - Vendor";
 
   return (
     <React.Fragment>

@@ -28,7 +28,7 @@ import { useFormik } from "formik";
 import { createSelector } from 'reselect';
 
 const Team = () => {
-    document.title = "Team | GK Dukaan - Ghar Ki Dukaan";
+    document.title = "Team | GK Dukaan - Vendor";
 
     const dispatch = useDispatch();
 

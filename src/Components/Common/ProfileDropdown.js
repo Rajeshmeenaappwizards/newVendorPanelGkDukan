@@ -8,7 +8,6 @@ import { useSelector } from 'react-redux';
 
 const ProfileDropdown = () => {
     const updateRes = useSelector((state) => state.Profile.getProfileState.vendor);
-    console.log('updateRes',updateRes)
 
 
     const profiledropdownData = createSelector(

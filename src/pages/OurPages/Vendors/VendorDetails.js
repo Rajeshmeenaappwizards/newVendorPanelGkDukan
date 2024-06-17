@@ -121,7 +121,7 @@ const VendorDetails = () => {
   const onChangeChartPeriod = (number) => {
     setMonths(number);
   };
-  document.title = "Sellers Details | GK Dukaan - Ghar Ki Dukaan";
+  document.title = "Sellers Details | GK Dukaan - Vendor";
 
   const handleUpdateStatus = (e) => {
     const newStatus = e.target.value;

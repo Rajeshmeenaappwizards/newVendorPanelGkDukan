@@ -7,7 +7,7 @@ import ParticlesAuth from "../ParticlesAuth";
 import logoLight from "../../../assets/images/logo-light.png";
 
 const BasicSuccessMsg = () => {
-    document.title = "Success Message | GK Dukaan - Ghar Ki Dukaan";
+    document.title = "Success Message | GK Dukaan - Vendor";
     return (
         <React.Fragment>
             <ParticlesAuth>

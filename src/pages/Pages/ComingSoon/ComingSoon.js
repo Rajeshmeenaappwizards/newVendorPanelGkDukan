@@ -31,7 +31,7 @@ const ComingSoon = () => {
         }
     }
 
-document.title ="Coming Soon | GK Dukaan - Ghar Ki Dukaan";
+document.title ="Coming Soon | GK Dukaan - Vendor";
 
     return (
         <React.Fragment>            

@@ -80,7 +80,7 @@ const Login = (props) => {
             }, 3000);
         }
     }, [dispatch, errorMsg]);
-    document.title = "Basic SignIn | GK Dukaan - Ghar Ki Dukaan";
+    document.title = "Basic SignIn | GK Dukaan - Vendor";
     return (
         <React.Fragment>
             <ParticlesAuth>

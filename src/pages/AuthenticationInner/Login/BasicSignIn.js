@@ -9,7 +9,7 @@ import logoLight from "../../../assets/images/logo-light.png";
 
 
 const BasicSignIn = () => {
-document.title="Basic SignIn | GK Dukaan - Ghar Ki Dukaan";
+document.title="Basic SignIn | GK Dukaan - Vendor";
     return (
         <React.Fragment>
             <ParticlesAuth>

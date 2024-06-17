@@ -15,7 +15,7 @@ const Settings = () => {
         if (activeTab !== tab) setActiveTab(tab);
     };
 
-    document.title = "Profile Settings | GK Dukaan - Ghar Ki Dukaan";
+    document.title = "Profile Settings | GK Dukaan - Vendor";
 
     return (
         <React.Fragment>

@@ -9,7 +9,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
 const BasicPasswReset = () => {
-    document.title="Reset Password | GK Dukaan - Ghar Ki Dukaan";
+    document.title="Reset Password | GK Dukaan - Vendor";
 
     const validation = useFormik({
         enableReinitialize: true,

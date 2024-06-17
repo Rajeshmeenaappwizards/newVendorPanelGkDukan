@@ -27,7 +27,7 @@ import smallImage7 from '../../../../assets/images/small/img-7.jpg';
 import smallImage9 from '../../../../assets/images/small/img-9.jpg';
 
 const SimplePage = () => {
-    document.title = "Profile | GK Dukaan - Ghar Ki Dukaan";
+    document.title = "Profile | GK Dukaan - Vendor";
 
     SwiperCore.use([Autoplay]);
 

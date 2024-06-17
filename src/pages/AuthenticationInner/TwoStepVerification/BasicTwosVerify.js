@@ -8,7 +8,7 @@ import logoLight from "../../../assets/images/logo-light.png";
 
 
 const BasicTwosVerify = () => {
-    document.title = "Two Step Verification | GK Dukaan - Ghar Ki Dukaan";
+    document.title = "Two Step Verification | GK Dukaan - Vendor";
 
     const getInputElement = (index) => {
         return document.getElementById('digit' + index + '-input');

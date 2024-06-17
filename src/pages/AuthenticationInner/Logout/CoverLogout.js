@@ -5,7 +5,7 @@ import { Card, Col, Container, Row } from 'reactstrap';
 import AuthSlider from '../authCarousel';
 
 const CoverLogout = () => {
-    document.title = "Log Out ---  | GK Dukaan - Ghar Ki Dukaan";
+    document.title = "Log Out ---  | GK Dukaan - Vendor";
     return (
         <React.Fragment>
             <div className="auth-page-wrapper auth-bg-cover py-5 d-flex justify-content-center align-items-center min-vh-100">
@@ -48,7 +48,7 @@ const CoverLogout = () => {
                         <Row>
                             <Col lg={12}>
                                 <div className="text-center">
-                                    <p className="mb-0">&copy; {new Date().getFullYear()} Gk Dukaan - Ghar Ki Dukaan</p>
+                                    <p className="mb-0">&copy; {new Date().getFullYear()} GK Dukaan - Vendor</p>
                                 </div>
                             </Col>
                         </Row>

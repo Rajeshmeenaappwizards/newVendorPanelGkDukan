@@ -61,7 +61,7 @@ const Products = () => {
     }
   };
 
-  document.title = "Listjs | GK Dukaan - Ghar Ki Dukaan";
+  document.title = "Listjs | GK Dukaan - Vendor";
 
   const columns = useMemo(
     () => [

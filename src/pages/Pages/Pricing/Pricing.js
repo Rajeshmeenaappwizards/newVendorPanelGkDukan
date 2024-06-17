@@ -15,7 +15,7 @@ const Pricing = () => {
         }
     };
 
-    document.title = "Pricing | GK Dukaan - Ghar Ki Dukaan";
+    document.title = "Pricing | GK Dukaan - Vendor";
 
     return (
         <React.Fragment>

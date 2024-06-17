@@ -234,7 +234,7 @@ const Reviews = () => {
     ],
     []
   );
-  document.title = "Listjs | GK Dukaan - Ghar Ki Dukaan";
+  document.title = "Listjs | GK Dukaan - Vendor";
 
   return (
     <React.Fragment>

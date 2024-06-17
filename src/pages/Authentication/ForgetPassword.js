@@ -53,7 +53,7 @@ const ForgetPasswordPage = props => {
     forgetError, forgetSuccessMsg
   } = useSelector(selectLayoutProperties);
 
-  document.title = "Reset Password | GK Dukaan - Ghar Ki Dukaan";
+  document.title = "Reset Password | GK Dukaan - Vendor";
   return (
     <ParticlesAuth>
       <div className="auth-page-content mt-lg-5">

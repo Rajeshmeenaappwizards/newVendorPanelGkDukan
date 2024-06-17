@@ -110,7 +110,7 @@ const Register = () => {
 
 
 
-  document.title = "SignUp | GK Dukaan - Ghar Ki Dukaan";
+  document.title = "SignUp | GK Dukaan - Vendor";
 
   const toggleTab = (tab, value) => {
     if (activeTab !== tab) {

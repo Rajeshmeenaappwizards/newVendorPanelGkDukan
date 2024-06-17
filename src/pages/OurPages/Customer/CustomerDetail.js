@@ -99,7 +99,7 @@ const CustomerDetail = () => {
     setMonths(number);
   };
   document.title =
-    "Sellers Details | GK Dukaan - Ghar Ki Dukaan";
+    "Sellers Details | GK Dukaan - Vendor";
 
   return (
     <React.Fragment>

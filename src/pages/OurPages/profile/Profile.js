@@ -94,7 +94,7 @@ const Profile = () => {
     },
   });
 
-  document.title = "Profile | GK Dukaan - Ghar Ki Dukaan";
+  document.title = "Profile | GK Dukaan - Vendor";
 
   useEffect(() => {
     if (success) {

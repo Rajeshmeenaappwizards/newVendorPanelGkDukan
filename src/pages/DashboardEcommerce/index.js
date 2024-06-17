@@ -17,11 +17,12 @@ import { useSelector } from "react-redux";
 const DashboardEcommerce = () => {
 
   const [months, setMonths] = useState(12);
-  document.title = "Dashboard | GK Dukaan - Ghar Ki Dukaan";
+  document.title = "Dashboard | GK Dukaan - Vendor";
   const dispatch = useDispatch();
 
 
   const revenueDataRes = useSelector((state) => state.DashboardEcommerce.getRevenueChartDashboard)
+  console.log('revenueDataRes',revenueDataRes)
 
   useEffect(() =>{
     dispatch(getProfileThunk())

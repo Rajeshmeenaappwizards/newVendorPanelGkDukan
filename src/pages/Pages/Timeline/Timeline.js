@@ -34,7 +34,7 @@ const Timeline = () => {
     SwiperCore.use([FreeMode, Navigation, Thumbs]);
     const [thumbsSwiper] = useState(null);
 
-    document.title = "Timeline | GK Dukaan - Ghar Ki Dukaan";
+    document.title = "Timeline | GK Dukaan - Vendor";
 
     return (
         <React.Fragment>

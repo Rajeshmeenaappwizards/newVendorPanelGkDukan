@@ -60,7 +60,7 @@ const NotificationAccordian = () => {
     }
   };
 
-  document.title = "Accordions | GK Dukaan - Ghar Ki Dukaan";
+  document.title = "Accordions | GK Dukaan - Vendor";
 
   return (
     <React.Fragment>

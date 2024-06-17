@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Card, CardBody, Col, Container, Row } from 'reactstrap';
 
 const Alt404 = () => {
-    document.title = "404 Error Alt | GK Dukaan - Ghar Ki Dukaan";
+    document.title = "404 Error Alt | GK Dukaan - Vendor";
     return (
         <React.Fragment>
             <div className="auth-page-wrapper auth-bg-cover py-5 d-flex justify-content-center align-items-center min-vh-100">

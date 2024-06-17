@@ -9,7 +9,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
 const CoverSignUp = () => {
-    document.title = "Cover SignUp | GK Dukaan - Ghar Ki Dukaan";
+    document.title = "Cover SignUp | GK Dukaan - Vendor";
 
     const [passwordShow, setPasswordShow] = useState(false);
 
@@ -140,7 +140,7 @@ const CoverSignUp = () => {
                         <div className="row">
                             <div className="col-lg-12">
                                 <div className="text-center">
-                                    <p className="mb-0">{new Date().getFullYear()} Gk Dukaan - Ghar Ki Dukaan</p>
+                                    <p className="mb-0">{new Date().getFullYear()} GK Dukaan - Vendor</p>
                                 </div>
                             </div>
                         </div>

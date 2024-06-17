@@ -153,7 +153,7 @@ function CatalogDetails() {
   const successnotify = (message) => toast(message, { position: "top-center", hideProgressBar: true, closeOnClick: false, className: 'bg-success text-white' });
 
   document.title =
-    "Product Details | GK Dukaan - Ghar Ki Dukaan";
+    "Product Details | GK Dukaan - Vendor";
 
   const formattedDate = (timestamp) => {
     const date = new Date(timestamp);

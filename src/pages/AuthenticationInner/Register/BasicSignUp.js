@@ -11,7 +11,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
 const BasicSignUp = () => {
-    document.title = "Basic SignUp | GK Dukaan - Ghar Ki Dukaan";
+    document.title = "Basic SignUp | GK Dukaan - Vendor";
 
     const [passwordShow, setPasswordShow] = useState(false);
 

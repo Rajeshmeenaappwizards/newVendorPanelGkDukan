@@ -7,7 +7,7 @@ import ParticlesAuth from "../ParticlesAuth";
 import logoLight from "../../../assets/images/logo-light.png";
 
 const BasicLogout = () => {
-    document.title = "Log Out | GK Dukaan - Ghar Ki Dukaan";
+    document.title = "Log Out | GK Dukaan - Vendor";
     return (
         <React.Fragment>
             <ParticlesAuth>

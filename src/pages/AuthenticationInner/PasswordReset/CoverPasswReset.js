@@ -9,7 +9,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
 const CoverPasswReset = () => {
-    document.title = "Reset Password | GK Dukaan - Ghar Ki Dukaan";
+    document.title = "Reset Password | GK Dukaan - Vendor";
 
     const validation = useFormik({
         enableReinitialize: true,
@@ -96,7 +96,7 @@ const CoverPasswReset = () => {
                         <Row>
                             <Col lg={12}>
                                 <div className="text-center">
-                                    <p className="mb-0">&copy; {new Date().getFullYear()} Gk Dukaan - Ghar Ki Dukaan</p>
+                                    <p className="mb-0">&copy; {new Date().getFullYear()} GK Dukaan - Vendor</p>
                                 </div>
                             </Col>
                         </Row>

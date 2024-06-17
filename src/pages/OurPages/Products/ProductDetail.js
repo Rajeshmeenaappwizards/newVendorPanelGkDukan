@@ -126,7 +126,7 @@ function ProductDetail(props) {
     setSelectedStatus(Product?.approved === true ? "approve" : "reject");
   }, [Product]);
 
-  document.title = "Product Details | GK Dukaan - Ghar Ki Dukaan";
+  document.title = "Product Details | GK Dukaan - Vendor";
 
   const formattedDate = (timestamp) => {
     const date = new Date(timestamp);
