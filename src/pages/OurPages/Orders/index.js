@@ -31,6 +31,8 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
   resetOrdersState,
+  resetStatus,
+  resetStatusData,
   setPageOrder,
   setStatusOrder,
 } from "../../../slices/orders/reducer";
@@ -40,10 +42,13 @@ const Orders = ({ header = true, customerId = "", isGlobalFilter = true }) => {
   const [activeTab, setActiveTab] = useState("1");
   const [orderList, setOrderList] = useState([]);
   const [isEdit, setIsEdit] = useState(false);
+  const [checkedOrders, setCheckedOrders] = useState([]);
 
   const dispatch = useDispatch();
 
   const OrderRes = useSelector((state) => state.Orders.orderState);
+  const CancelRes = useSelector((state) => state.Orders.cancelOrderData);
+  const ReadyToShipRes = useSelector((state) => state.Orders.readyToShipData);
   const pageRes = useSelector((state) => state.Orders.page);
   const vendorIdRes = useSelector((state) => state.Orders.vendorId);
   const statusRes = useSelector((state) => state.Orders.status);
@@ -53,7 +58,10 @@ const Orders = ({ header = true, customerId = "", isGlobalFilter = true }) => {
   const keywordRes = useSelector((state) => state.Orders.keyword);
 
   useEffect(() => {
-    return () => dispatch(resetOrdersState());
+    return () => {
+      dispatch(resetOrdersState());
+      dispatch(resetStatusData());
+    }
   }, []);
 
   const fetchData = () => {
@@ -66,20 +74,21 @@ const Orders = ({ header = true, customerId = "", isGlobalFilter = true }) => {
     );
     if (confirmed) {
       if (orderId) {
-        const res = await dispatch(cancelOrder(orderId));
-        fetchData()
+        dispatch(cancelOrder(orderId));
       }
     }
   };
 
   const handleReadyToShipOrder = async (orderId) => {
+    let params = {
+      order_id: orderId
+    }
     const confirmed = window.confirm(
       "Are you sure you want to Create Shipping ?"
     );
     if (confirmed) {
       if (orderId) {
-        const res = await dispatch(readyToShip(orderId));
-        fetchData()
+        dispatch(readyToShip(params));
       }
     }
   };
@@ -96,7 +105,8 @@ const Orders = ({ header = true, customerId = "", isGlobalFilter = true }) => {
       keyword: keywordRes,
     };
     fetchAllOrders(params);
-  }, [pageRes, vendorIdRes, statusRes, endDateRes, customerIdRes, keywordRes]);
+    dispatch(resetStatus(params));
+  }, [pageRes, vendorIdRes, statusRes, endDateRes, customerIdRes, keywordRes, ReadyToShipRes?.success, CancelRes?.success]);
 
   useEffect(() => {
     if (OrderRes && OrderRes.success) {
@@ -162,22 +172,53 @@ const Orders = ({ header = true, customerId = "", isGlobalFilter = true }) => {
   const checkedAll = useCallback(() => {
     const checkall = document.getElementById("checkBoxAll");
     const ele = document.querySelectorAll(".orderCheckBox");
-
+    let selectedData = [];
     if (checkall.checked) {
       ele.forEach((ele) => {
         ele.checked = true;
+        selectedData.push(ele.value);
       });
+      setCheckedOrders(selectedData)
     } else {
       ele.forEach((ele) => {
         ele.checked = false;
+        setCheckedOrders([])
       });
     }
-    deleteCheckbox();
   }, []);
+
+  const handleCheckboxChange = (event) => {
+    const checkall = document.getElementById("checkBoxAll");
+    const { value, checked } = event.target;
+    // if (checked && checkedOrders.length === 10) {
+    //   checkall.checked = true;
+    // }
+    setCheckedOrders((prevCheckedOrders) => {
+      if (checked) {
+        if (prevCheckedOrders.length === OrderRes.data.length - 1) {
+          checkall.checked = true;
+        }
+        return [...prevCheckedOrders, value];
+      } else {
+        checkall.checked = "";
+        return prevCheckedOrders.filter((orderId) => orderId !== value);
+      }
+    });
+  };
 
   // Column
   const columns = useMemo(
     () => [
+      {
+        header: <input type="checkbox" id="checkBoxAll" className="form-check-input" onClick={() => checkedAll()} />,
+        cell: (cell) => {
+          return <input type="checkbox" className="orderCheckBox form-check-input" value={cell.getValue()} onChange={handleCheckboxChange} />;
+        },
+        id: '#',
+        accessorKey: '_id',
+        enableColumnFilter: false,
+        enableSorting: false,
+      },
       {
         header: "Order Id",
         accessorKey: "orderId",
@@ -408,6 +449,27 @@ const Orders = ({ header = true, customerId = "", isGlobalFilter = true }) => {
       moment(getTime, "hh:mm").format("hh:mm") + " " + meridiem;
     return updateTime;
   };
+  const uncheckAllCheckboxes = () => {
+    setCheckedOrders([]);
+    const checkall = document.getElementById("checkBoxAll");
+    const ele = document.querySelectorAll(".orderCheckBox");
+    checkall.checked = false; // Ensure it is false, not an empty string
+    ele.forEach((checkbox) => {
+      checkbox.checked = false;
+    });
+  };
+
+  const handleBulkReadyToShip = async () => {
+    let params = {
+      order_ids: checkedOrders
+    }
+    const confirmed = window.confirm(
+      "Are you sure you want to Create Shipping for selected orders?"
+    );
+    if (confirmed) {
+      dispatch(readyToShip(params));
+    }
+  };
 
   document.title = "Orders | GK Dukaan - Vendor";
 
@@ -431,6 +493,7 @@ const Orders = ({ header = true, customerId = "", isGlobalFilter = true }) => {
                           "fw-semibold"
                         )}
                         onClick={() => {
+                          uncheckAllCheckboxes();
                           toggleTab("1", "all");
                         }}
                         href="#"
@@ -442,16 +505,17 @@ const Orders = ({ header = true, customerId = "", isGlobalFilter = true }) => {
                     <NavItem>
                       <NavLink
                         className={classnames(
-                          { active: activeTab === "2" },
+                          { active: activeTab === "8" },
                           "fw-semibold"
                         )}
                         onClick={() => {
-                          toggleTab("2", "delivered");
+                          uncheckAllCheckboxes();
+                          toggleTab("8", "processing");
                         }}
                         href="#"
                       >
-                        <i className="ri-checkbox-circle-line me-1 align-bottom"></i>{" "}
-                        Delivered
+                        <i className="ri-file-list-line me-1 align-bottom"></i>{" "}
+                        Processing
                       </NavLink>
                     </NavItem>
                     <NavItem>
@@ -461,6 +525,7 @@ const Orders = ({ header = true, customerId = "", isGlobalFilter = true }) => {
                           "fw-semibold"
                         )}
                         onClick={() => {
+                          uncheckAllCheckboxes();
                           toggleTab("3", "readyToShip");
                         }}
                         href="#"
@@ -472,55 +537,11 @@ const Orders = ({ header = true, customerId = "", isGlobalFilter = true }) => {
                     <NavItem>
                       <NavLink
                         className={classnames(
-                          { active: activeTab === "4" },
-                          "fw-semibold"
-                        )}
-                        onClick={() => {
-                          toggleTab("4", "returned");
-                        }}
-                        href="#"
-                      >
-                        <i className="ri-arrow-left-right-fill me-1 align-bottom"></i>{" "}
-                        Returns
-                      </NavLink>
-                    </NavItem>
-                    <NavItem>
-                      <NavLink
-                        className={classnames(
-                          { active: activeTab === "5" },
-                          "fw-semibold"
-                        )}
-                        onClick={() => {
-                          toggleTab("5", "cancelled");
-                        }}
-                        href="#"
-                      >
-                        <i className="ri-close-circle-line me-1 align-bottom"></i>{" "}
-                        Cancelled
-                      </NavLink>
-                    </NavItem>
-                    <NavItem>
-                      <NavLink
-                        className={classnames(
-                          { active: activeTab === "6" },
-                          "fw-semibold"
-                        )}
-                        onClick={() => {
-                          toggleTab("6", "pending");
-                        }}
-                        href="#"
-                      >
-                        <i className="ri-time-line me-1 align-bottom"></i>{" "}
-                        Pending
-                      </NavLink>
-                    </NavItem>
-                    <NavItem>
-                      <NavLink
-                        className={classnames(
                           { active: activeTab === "7" },
                           "fw-semibold"
                         )}
                         onClick={() => {
+                          uncheckAllCheckboxes();
                           toggleTab("7", "shipped");
                         }}
                         href="#"
@@ -532,19 +553,79 @@ const Orders = ({ header = true, customerId = "", isGlobalFilter = true }) => {
                     <NavItem>
                       <NavLink
                         className={classnames(
-                          { active: activeTab === "8" },
+                          { active: activeTab === "2" },
                           "fw-semibold"
                         )}
                         onClick={() => {
-                          toggleTab("8", "processing");
+                          uncheckAllCheckboxes();
+                          toggleTab("2", "delivered");
                         }}
                         href="#"
                       >
-                        <i className="ri-file-list-line me-1 align-bottom"></i>{" "}
-                        Processing
+                        <i className="ri-checkbox-circle-line me-1 align-bottom"></i>{" "}
+                        Delivered
+                      </NavLink>
+                    </NavItem>
+                    <NavItem>
+                      <NavLink
+                        className={classnames(
+                          { active: activeTab === "5" },
+                          "fw-semibold"
+                        )}
+                        onClick={() => {
+                          uncheckAllCheckboxes();
+                          toggleTab("5", "cancelled");
+                        }}
+                        href="#"
+                      >
+                        <i className="ri-close-circle-line me-1 align-bottom"></i>{" "}
+                        Cancelled
+                      </NavLink>
+                    </NavItem>
+                    <NavItem>
+                      <NavLink
+                        className={classnames(
+                          { active: activeTab === "4" },
+                          "fw-semibold"
+                        )}
+                        onClick={() => {
+                          uncheckAllCheckboxes();
+                          toggleTab("4", "returned");
+                        }}
+                        href="#"
+                      >
+                        <i className="ri-arrow-left-right-fill me-1 align-bottom"></i>{" "}
+                        Returns
+                      </NavLink>
+                    </NavItem>
+                    <NavItem>
+                      <NavLink
+                        className={classnames(
+                          { active: activeTab === "6" },
+                          "fw-semibold"
+                        )}
+                        onClick={() => {
+                          uncheckAllCheckboxes();
+                          toggleTab("6", "pending");
+                        }}
+                        href="#"
+                      >
+                        <i className="ri-time-line me-1 align-bottom"></i>{" "}
+                        Pending
                       </NavLink>
                     </NavItem>
                   </Nav>
+
+                  <div className="d-flex justify-content-end mt-2 position-absolute" style={{ right: 5 }}>{
+                    activeTab === "8" && checkedOrders.length > 0 && (
+                      <button
+                        className="btn btn-primary"
+                        onClick={handleBulkReadyToShip}
+                      >
+                        ReadyToShip
+                      </button>
+                    )}
+                  </div>
 
                   <TableContainer
                     columns={columns}

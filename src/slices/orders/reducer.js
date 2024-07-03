@@ -9,7 +9,8 @@ import {
 
 export const initialState = {
   orderState: [],
-  ship: [],
+  cancelOrderData: null,
+  readyToShipData: null,
   error: {},
   page: 1,
   vendorId: "",
@@ -49,11 +50,18 @@ const orderSlice = createSlice({
     resetOrdersState(state) {
       state.page = 1,
         state.vendorId = "",
-        state.status = "",
+        // state.status = "",
         state.startDate = "",
         state.endDate = "",
         state.customerId = "",
         state.keyword = ""
+    },
+    resetStatusData(state){
+      state.status = ""
+    },
+    resetStatus(state) {
+      state.readyToShipData = null,
+        state.cancelOrderData = null
     }
   },
   extraReducers: (builder) => {
@@ -84,7 +92,7 @@ const orderSlice = createSlice({
     });
 
     builder.addCase(cancelOrder.fulfilled, (state, action) => {
-      state.orderState = action.payload.data;
+      state.cancelOrderData = action.payload;
     });
 
     builder.addCase(cancelOrder.rejected, (state, action) => {
@@ -93,7 +101,7 @@ const orderSlice = createSlice({
     });
 
     builder.addCase(readyToShip.fulfilled, (state, action) => {
-      state.ship = action.payload.data;
+      state.readyToShipData = action.payload;
     });
 
     builder.addCase(readyToShip.rejected, (state, action) => {
@@ -111,7 +119,9 @@ export const {
   setEndDateOrder,
   setCustomerIdOrder,
   setKeywordOrder,
-  resetOrdersState
+  resetOrdersState,
+  resetStatusData,
+  resetStatus
 } = orderSlice.actions;
 
 export default orderSlice.reducer;

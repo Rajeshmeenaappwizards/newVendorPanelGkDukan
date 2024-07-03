@@ -508,8 +508,8 @@ export const getOrdersByStatusData = (status) =>
 export const cancelOrderData = (id) =>
   api.put(`${url.BASE_URL}${url.CANCEL_ORDER}/${id}`);
 
-export const readyToShipOrder = (id) =>
-  api.put(`${url.BASE_URL}${url.READY_TO_SHIP_ORDER}/${id}`);
+export const readyToShipOrder = (data) =>
+  api.put(`${url.BASE_URL}${url.READY_TO_SHIP_ORDER}`, data);
 // ===========Orders
 
 // =============Customer

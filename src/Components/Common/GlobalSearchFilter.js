@@ -231,63 +231,25 @@ const CustomersGlobalFilter = () => {
 
 const OrderGlobalFilter = () => {
   const dispatch = useDispatch();
+  const [dateRange, setDateRange] = useState([null, null]);
 
-  // const [vendorOption, setVendorOption] = useState([]);
-  // const [customer, setCustomer] = useState([]);
+  const handleDateChange = (date) => {
+    setDateRange(date);
+    if (date && date.length > 0) {
+      if (date[0]) {
+        dispatch(setStartDateOrder(formatDate(date[0])));
+      }
+      if (date[1]) {
+        dispatch(setEndDateOrder(formatDate(date[1])));
+      }
+    }
+  };
 
-  // const VendorOptionRes = useSelector((state) => state.Option.options);
-  // const CustomerOptionRes = useSelector(
-  //   (state) => state.Option.optionsCustomer
-  // );
+  const handleReset = () => {
+    setDateRange([null, null]);
+    dispatch(resetOrdersState());
+  };
 
-  // useEffect(() => {
-  //   if (VendorOptionRes && VendorOptionRes.success) {
-  //     setVendorOption(VendorOptionRes.data);
-  //   }
-  // }, [VendorOptionRes]);
-
-  // useEffect(() => {
-  //   if (CustomerOptionRes && CustomerOptionRes.success) {
-  //     setCustomer(CustomerOptionRes.data);
-  //   }
-  // }, [CustomerOptionRes]);
-
-  // useEffect(() => {
-  //   let params = {
-  //     limit: 10,
-  //   };
-  //   fetchVendorOptions(params);
-  //   fetchCustomerOptions(params);
-  // }, []);
-
-  // const fetchVendorOptions = (data) => {
-  //   dispatch(getOptionsData(data));
-  // };
-  // const fetchCustomerOptions = (data) => {
-  //   dispatch(getCustomerOptionsData(data));
-  // };
-  // const handleOptionChange = (inputValue) => {
-  //   let params = {
-  //     limit: 10,
-  //   };
-  //   if (inputValue) {
-  //     params.keyword = inputValue;
-  //     fetchVendorOptions(params);
-  //   } else {
-  //     fetchVendorOptions(params);
-  //   }
-  // };
-  // const handleCustomerOptionChange = (inputValue) => {
-  //   let params = {
-  //     limit: 10,
-  //   };
-  //   if (inputValue) {
-  //     params.keyword = inputValue;
-  //     fetchCustomerOptions(params);
-  //   } else {
-  //     fetchCustomerOptions(params);
-  //   }
-  // };
   return (
     <React.Fragment>
       <Col sm={6} className="col-xxl-2">
@@ -302,42 +264,18 @@ const OrderGlobalFilter = () => {
               altInput: true,
               altFormat: "F j, Y",
             }}
-            onChange={(date) => {
-              if (date && date.length > 0) {
-                if (date[0]) {
-                  dispatch(setStartDateOrder(formatDate(date[0])));
-                }
-                if (date[1]) {
-                  dispatch(setEndDateOrder(formatDate(date[1])));
-                }
-              }
-            }}
+            value={dateRange}
+            onChange={handleDateChange}
           />
         </div>
       </Col>
 
-      {/* <DynamicSelectComponent
-        handleOptionChange={handleOptionChange}
-        placeholder="Select Vendor"
-        options={vendorOption}
-        name="choices-single-default"
-        id="idVendorOrder"
-      /> */}
-      
-      {/* <DynamicSelectComponent
-        handleOptionChange={handleCustomerOptionChange}
-        placeholder="Select Customer"
-        options={customer}
-        name="choices-payment-default"
-        id="idCustomer"
-      /> */}
-
       <Col>
         <div>
           <button
-            onClick={() => dispatch(resetOrdersState())}
+            onClick={handleReset}
             type="button"
-            className="btn btn-primary "
+            className="btn btn-primary"
           >
             <i className="ri-equalizer-fill me-1 align-bottom"></i>
             Reset
@@ -347,6 +285,7 @@ const OrderGlobalFilter = () => {
     </React.Fragment>
   );
 };
+
 
 const CatalogGlobalFilter = () => {
   const dispatch = useDispatch();
