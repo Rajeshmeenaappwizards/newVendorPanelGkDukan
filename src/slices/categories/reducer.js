@@ -10,6 +10,7 @@ import {
 export const initialState = {
   categoriesData: [],
   categoriesAll: [],
+  parentCategoryData: [],
   postCategoriesData: [],
   editOneCategoriesData: [],
   deleteCategoriesData: [],
@@ -31,7 +32,8 @@ const CategorySlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getGetCategoriesData.fulfilled, (state, action) => {
       let categoriesDatas = flattenCategories(action.payload);
-      state.categoriesData = categoriesDatas;
+      state.parentCategoryData = categoriesDatas.parentCategory;
+      state.categoriesData = categoriesDatas.options;
       state.categoriesAll = action.payload;
     });
     builder.addCase(getGetCategoriesData.rejected, (state, action) => {
@@ -74,7 +76,11 @@ export default CategorySlice.reducer;
 
 function flattenCategories(categories) {
   let options = [];
+  let parentCategory = [];
   categories?.forEach((category) => {
+    if (!category.parentId) {
+      parentCategory.push(category);
+    }
     options.push({
       value: category._id,
       label: category.title,
@@ -84,7 +90,8 @@ function flattenCategories(categories) {
       options = options.concat(flattenChildren(category.children, 1));
     }
   });
-  return options;
+
+  return { options, parentCategory };
 }
 
 function flattenChildren(children, depth) {

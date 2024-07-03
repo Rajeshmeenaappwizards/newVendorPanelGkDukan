@@ -28,10 +28,12 @@ registerPlugin(FilePondPluginImagePreview);
 
 const AddCatalogModal = ({
   AddCatalogModal = false,
-  toggleCatalogAddFnc = () => {},
+  toggleCatalogAddFnc = () => { },
 }) => {
   const dispatch = useDispatch();
   const [files, setFiles] = useState([]);
+  const [searchCategoryValue, setSearchCategoryValue] = useState("");
+  const [searchCategory, setSearchCategory] = useState(null);
   const [levelOneCategory, setLevelOneCategory] = useState("");
   const [levelTwoCategory, setLevelTwoCategory] = useState("");
   const [levelThreeCategory, setLevelThreeCategory] = useState("");
@@ -49,11 +51,11 @@ const AddCatalogModal = ({
     media_id: "",
     // vendor_id: "",
   });
-  // const [vendorOption, setVendorOption] = useState([]);
-
-  // const VendorOptionRes = useSelector((state) => state.Option.options);
   const categoriesRes = useSelector(
     (state) => state.CategorySlice.categoriesAll
+  );
+  const parentCategoryDatas = useSelector(
+    (state) => state.CategorySlice.parentCategoryData
   );
 
   useEffect(() => {
@@ -62,38 +64,10 @@ const AddCatalogModal = ({
     }
   }, [categoriesRes]);
 
-  // useEffect(() => {
-  //   if (VendorOptionRes && VendorOptionRes.success) {
-  //     setVendorOption(VendorOptionRes.data);
-  //   }
-  // }, [VendorOptionRes]);
 
   useEffect(() => {
-    let params = {
-      limit: 10,
-    };
-    // fetchVendorOptions(params);
-    fetchCategoriesOption();
-  }, []);
-
-  // const fetchVendorOptions = (data) => {
-  //   dispatch(getOptionsData(data));
-  // };
-  const fetchCategoriesOption = () => {
     dispatch(getGetCategoriesData());
-  };
-
-  // const handleOptionChange = (inputValue) => {
-  //   let params = {
-  //     limit: 10,
-  //   };
-  //   if (inputValue) {
-  //     params.keyword = inputValue;
-  //     fetchVendorOptions(params);
-  //   } else {
-  //     fetchVendorOptions(params);
-  //   }
-  // };
+  }, []);
 
   const handleInputChange = ({ target: { id, value } }) => {
     setCatalogData((prevState) => ({
@@ -157,9 +131,6 @@ const AddCatalogModal = ({
     };
   };
 
-  const handleVendorSelected = (val) => {
-    setCatalogData((prevState) => ({ ...prevState, vendor_id: val }));
-  };
   const onChangeParantCategory = (selectedOption) => {
     setLevelOneCategory(selectedOption ? selectedOption.value : "");
     setSubCategories(selectedOption ? selectedOption.children : []);
@@ -205,6 +176,108 @@ const AddCatalogModal = ({
     }));
   };
 
+  const handleSearchCategory = (e) => {
+    const searchValue = e.target.value.toLowerCase();
+    setSearchCategoryValue(searchValue);
+
+    if (searchValue === "") {
+      setSearchCategory([]);
+      return;
+    }
+
+    const filteredCategories = categoriesRes.filter((category) =>
+      category.title.toLowerCase().includes(searchValue)
+    );
+    setSearchCategory(filteredCategories); // Update filtered categories
+  };
+  
+  const handleCategoryClick = (categoryData) => {
+    const paramsData = {
+      value: categoryData._id,
+      label: categoryData.title,
+      children: categoryData.children,
+    };
+  
+    if (!categoryData.path) {
+      onChangeParantCategory(paramsData);
+      setSearchCategory(null);
+      return;
+    }
+  
+    // Split path by comma and trim each ID
+    const pathIds = categoryData.path.split(',').map(id => id.trim());
+  
+    // Initialize variables to store matched categories and reset levels
+    let currentCategory = null;
+    resetCategoryLevels();
+  
+    // Traverse through pathIds to find matching categories
+    pathIds.forEach((pathId, index) => {
+      if (index === 0) {
+        // Find matching category in categoriesRes
+        currentCategory = categoriesRes.find(category => category._id === pathId);
+      } else {
+        // Find matching category in currentCategory's children
+        currentCategory = currentCategory?.children.find(category => category._id === pathId);
+      }
+  
+      // Update state based on the level of the category
+      if (currentCategory) {
+        const params = {
+          value: currentCategory._id,
+          label: currentCategory.title,
+          children: currentCategory.children,
+        };
+        switch (index) {
+          case 0:
+            onChangeParantCategory(params);
+            break;
+          case 1:
+            onChangeSubCategory(params);
+            break;
+          case 2:
+            onChangeSubSubCategory(params);
+            break;
+          case 3:
+            onChangeSubSubSubCategory(params);
+            break;
+          default:
+            break;
+        }
+      }
+    });
+  
+    // Handle the case where there are fewer selected categories than levels
+    if (currentCategory) {
+      switch (pathIds.length) {
+        case 1:
+          onChangeSubCategory(paramsData);
+          break;
+        case 2:
+          onChangeSubSubCategory(paramsData);
+          break;
+        case 3:
+          onChangeSubSubSubCategory(paramsData);
+          break;
+        default:
+          break;
+      }
+    }
+  
+    setSearchCategory(null);
+  };
+  
+  const resetCategoryLevels = () => {
+    setLevelOneCategory("");
+    setLevelTwoCategory("");
+    setLevelThreeCategory("");
+    setLevelFourCategory("");
+  };
+  
+  
+
+
+
   return (
     <Modal
       size="xl"
@@ -224,12 +297,39 @@ const AddCatalogModal = ({
         <Row>
           <Col lg={4}>
             <FormGroup>
+              <Label for="search">Search categories</Label>
+              <Input
+                type="text"
+                id="search"
+                value={searchCategoryValue}
+                onChange={handleSearchCategory}
+                placeholder="Search Category"
+              />
+            </FormGroup>
+          </Col>
+        </Row>
+        {searchCategory && searchCategory.length > 0 && (
+          <div className="search-results">
+            {searchCategory.map((category) => (
+              <div
+                key={category._id}
+                className="search-result-item"
+                onClick={() => handleCategoryClick(category)}
+              >
+                {category.title}
+              </div>
+            ))}
+          </div>
+        )}
+        <Row>
+          <Col lg={4}>
+            <FormGroup>
               <Label for="taxSlabs">Select Parent Category</Label>
               <CategorySelect
                 value={levelOneCategory}
                 onChange={onChangeParantCategory}
                 placeholder="Select Parent Category..."
-                data={parentCategory}
+                data={parentCategoryDatas}
               />
             </FormGroup>
           </Col>
@@ -322,19 +422,6 @@ const AddCatalogModal = ({
               </div>
             </FormGroup>
           </Col>
-          {/* <Col lg={12}>
-            <FormGroup>
-              <Label for="productImages">Select Vendor</Label>
-              <DynamicSelectComponent
-                handleOptionChange={handleOptionChange}
-                handleVendorSelect={handleVendorSelected}
-                placeholder="Select Vendor"
-                // options={vendorOption}
-                name="choices-single-default"
-                id="VendorSelectAddCatalog"
-              />
-            </FormGroup>
-          </Col> */}
         </Row>
       </ModalBody>
       <div className="modal-footer">
