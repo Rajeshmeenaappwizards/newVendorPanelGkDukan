@@ -500,6 +500,9 @@ const Orders = ({ header = true, customerId = "", isGlobalFilter = true }) => {
                       >
                         <i className="ri-store-2-fill me-1 align-bottom"></i>{" "}
                         All Orders
+                        {/* <span className="badge bg-danger align-middle ms-1">
+                          {OrderRes?.total}
+                        </span> */}
                       </NavLink>
                     </NavItem>
                     <NavItem>
@@ -516,6 +519,9 @@ const Orders = ({ header = true, customerId = "", isGlobalFilter = true }) => {
                       >
                         <i className="ri-file-list-line me-1 align-bottom"></i>{" "}
                         Processing
+                        <span className="badge bg-danger align-middle ms-1">
+                          {OrderRes?.statusCounts?.processing}
+                        </span>
                       </NavLink>
                     </NavItem>
                     <NavItem>
@@ -532,6 +538,9 @@ const Orders = ({ header = true, customerId = "", isGlobalFilter = true }) => {
                       >
                         <i className="ri-truck-line me-1 align-bottom"></i>{" "}
                         Pickups{" "}
+                        <span className="badge bg-danger align-middle ms-1">
+                          {OrderRes?.statusCounts?.readyToShip}
+                        </span>
                       </NavLink>
                     </NavItem>
                     <NavItem>
@@ -548,6 +557,9 @@ const Orders = ({ header = true, customerId = "", isGlobalFilter = true }) => {
                       >
                         <i className="ri-ship-line me-1 align-bottom"></i>{" "}
                         Shipped
+                        <span className="badge bg-danger align-middle ms-1">
+                          {OrderRes?.statusCounts?.shipped}
+                        </span>
                       </NavLink>
                     </NavItem>
                     <NavItem>
@@ -564,6 +576,9 @@ const Orders = ({ header = true, customerId = "", isGlobalFilter = true }) => {
                       >
                         <i className="ri-checkbox-circle-line me-1 align-bottom"></i>{" "}
                         Delivered
+                        <span className="badge bg-danger align-middle ms-1">
+                          {OrderRes?.statusCounts?.delivered}
+                        </span>
                       </NavLink>
                     </NavItem>
                     <NavItem>
@@ -580,6 +595,9 @@ const Orders = ({ header = true, customerId = "", isGlobalFilter = true }) => {
                       >
                         <i className="ri-close-circle-line me-1 align-bottom"></i>{" "}
                         Cancelled
+                        <span className="badge bg-danger align-middle ms-1">
+                          {OrderRes?.statusCounts?.cancelled}
+                        </span>
                       </NavLink>
                     </NavItem>
                     <NavItem>
@@ -596,6 +614,9 @@ const Orders = ({ header = true, customerId = "", isGlobalFilter = true }) => {
                       >
                         <i className="ri-arrow-left-right-fill me-1 align-bottom"></i>{" "}
                         Returns
+                        <span className="badge bg-danger align-middle ms-1">
+                          {OrderRes?.statusCounts?.returned}
+                        </span>
                       </NavLink>
                     </NavItem>
                     <NavItem>
@@ -612,12 +633,15 @@ const Orders = ({ header = true, customerId = "", isGlobalFilter = true }) => {
                       >
                         <i className="ri-time-line me-1 align-bottom"></i>{" "}
                         Pending
+                        <span className="badge bg-danger align-middle ms-1">
+                          {OrderRes?.statusCounts?.pending}
+                        </span>
                       </NavLink>
                     </NavItem>
                   </Nav>
 
-                  <div className="d-flex justify-content-end mt-2 position-absolute" style={{ right: 5 }}>{
-                    activeTab === "8" && checkedOrders.length > 0 && (
+                  <div className="d-flex justify-content-end mt-2" style={{ right: 5 }}>{
+                    checkedOrders.length > 0 && (
                       <button
                         className="btn btn-primary"
                         onClick={handleBulkReadyToShip}
