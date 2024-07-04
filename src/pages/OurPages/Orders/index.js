@@ -195,7 +195,7 @@ const Orders = ({ header = true, customerId = "", isGlobalFilter = true }) => {
     // }
     setCheckedOrders((prevCheckedOrders) => {
       if (checked) {
-        if (prevCheckedOrders.length === OrderRes.data.length - 1) {
+        if (prevCheckedOrders?.length === OrderRes.data?.length - 1) {
           checkall.checked = true;
         }
         return [...prevCheckedOrders, value];
@@ -641,7 +641,7 @@ const Orders = ({ header = true, customerId = "", isGlobalFilter = true }) => {
                   </Nav>
 
                   <div className="d-flex justify-content-end mt-2" style={{ right: 5 }}>{
-                    checkedOrders.length > 0 && (
+                    checkedOrders?.length > 0 && (
                       <button
                         className="btn btn-primary"
                         onClick={handleBulkReadyToShip}
